@@ -11,7 +11,7 @@ const nextConfig = {
   allowedDevOrigins: [
     "http://localhost:1337/",
     "http://localhost:3000/",
-    "http://as044o84g44cg4w00ksksgc4.62.72.57.193.sslip.io", // replace with your URL
+    "https://as044o84g44cg4w00ksksgc4.62.72.57.193.sslip.io", // replace with your URL
   ],
 
   // Transpile slick-carousel to allow CSS imports from node_modules
