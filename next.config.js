@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  
+
   // Allow images from these domains
   images: {
     domains: ["example.com"],
@@ -9,6 +9,8 @@ const nextConfig = {
 
   // If you access dev server from external domains
   allowedDevOrigins: [
+    "http://localhost:1337/",
+    "http://localhost:3000/",
     "http://as044o84g44cg4w00ksksgc4.62.72.57.193.sslip.io", // replace with your URL
   ],
 
