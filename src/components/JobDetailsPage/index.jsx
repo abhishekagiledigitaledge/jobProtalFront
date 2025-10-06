@@ -31,7 +31,6 @@ const JobDetailsPage = ({ data, loading }) => {
   if (loading) return <p>Loading...</p>;
   if (!data) return <p>No data found.</p>;
 
-  console.log(data, 'data in job details page');
 
   const jobSummaryData = [
     {
