@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-  "dev": "NODE_ENV=development next dev",
-  "build": "NODE_ENV=production next build",
-  "start": "NODE_ENV=production next start"
-},
+    "dev": "NODE_ENV=development next dev",
+    "build": "NODE_ENV=production next build",
+    "start": "NODE_ENV=production next start"
+  },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
@@ -15,6 +15,7 @@
     "@mui/material": "^7.0.2",
     "@strapi/blocks-react-renderer": "^1.0.2",
     "axios": "^1.11.0",
+    "js-cookie": "^3.0.5",
     "next": "15.3.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

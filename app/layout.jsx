@@ -1,9 +1,7 @@
-
 import React from "react";
 import "@/styles/global.scss";
 import "./slick.css";
-import Header from "@/src/components/Header";
-import Footer from "@/src/components/Footer";
+import ConditionalLayout from "./ConditionalLayout";
 
 export const metadata = {
   title: "Job Portal",
@@ -20,9 +18,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        <Header />
-        {children}
-        <Footer />
+        <ConditionalLayout>{children}</ConditionalLayout>
       </body>
     </html>
   );
