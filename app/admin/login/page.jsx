@@ -27,9 +27,10 @@ export default function LoginPage() {
                 credentials: "include",
             });
 
-            localStorage.setItem("user", JSON.stringify(data.user));
+            localStorage.setItem("job_portal", JSON.stringify(data.user));
 
-            Cookies.set("token", data.token, { expires: 30 });
+            Cookies.set("job_portal", data.token, { expires: 30 });
+            router.push("/admin/dashboard");
 
             console.log("Login successful:", data);
         } catch (error) {
