@@ -6,7 +6,7 @@ import "../dashboard/dashboard.css";
 import CreateJob from "@/src/components/Jobs/CreateJob";
 // import Loader from "@/src/components/Loader/Loader";
 
-export default function AdminDashboard() {
+export default function JobDashboard() {
     const [adminName, setAdminName] = useState("Admin");
     const router = useRouter();
 
@@ -45,8 +45,6 @@ export default function AdminDashboard() {
             </header>
             {/* <Loader size={50} color="lightgray"/> */}
             <CreateJob />
-
-
 
             <footer className="dashboard-footer">
                 © {new Date().getFullYear()} Government Job Portal | All Rights Reserved
