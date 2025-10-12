@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import "./dashboard.css";
-// import Loader from "@/src/components/Loader/Loader";
+import Link from "next/link";
 
 export default function AdminDashboard() {
   const [adminName, setAdminName] = useState("Admin");
@@ -42,14 +42,15 @@ export default function AdminDashboard() {
           <button onClick={handleLogout}>Logout</button>
         </div>
       </header>
-      {/* <Loader size={50} color="lightgray"/> */}
 
       <main className="dashboard-main">
         <section className="stats-grid">
-          <div className="stat-card blue">
-            <h3>Total Jobs</h3>
-            <p>154</p>
-          </div>
+          <Link href="/admin/job" className="no-underline">
+            <div className="stat-card blue">
+              <h3>Total Jobs</h3>
+              <p>154</p>
+            </div>
+          </Link>
           <div className="stat-card green">
             <h3>Active Jobs</h3>
             <p>98</p>
