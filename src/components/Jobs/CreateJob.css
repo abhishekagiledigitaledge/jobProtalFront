@@ -1,3 +1,33 @@
+.add-job-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.add-job-btn .post-heading {
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.add-job-btn button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-job-btn button:hover {
+  background-color: #0056b3;
+}
+
 .create-job-container {
   max-width: 1200px;
   margin: 20px auto;
@@ -150,4 +180,46 @@
   color: #d93025;
   border: 1px solid #d93025;
 }
+
+.qa-section {
+  margin-top: 30px;
+}
+
+.qa-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+  background: #fafafa;
+}
+
+.qa-item .form-group {
+  margin-bottom: 10px;
+}
+
+.add-btn,
+.delete-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #1976d2;
+  color: #fff;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background: #e53935;
+}
+
+.add-btn:hover {
+  background: #1565c0;
+}
+
+.delete-btn:hover {
+  background: #c62828;
+}
+
 

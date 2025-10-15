@@ -4,10 +4,12 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import "../dashboard/dashboard.css";
 import CreateJob from "@/src/components/Jobs/CreateJob";
+import PostLists from "@/src/components/Jobs/PostLists";
 // import Loader from "@/src/components/Loader/Loader";
 
 export default function JobDashboard() {
     const [adminName, setAdminName] = useState("Admin");
+    const [isViewForm, setIsViewForm] = useState(false);
     const router = useRouter();
 
     useEffect(() => {
@@ -34,6 +36,15 @@ export default function JobDashboard() {
         router.push("/admin/login");
     };
 
+    const handleCloseForm = () => {
+        setIsViewForm(false);
+    }
+
+    const handleOpenForm = () => {
+        console.log("sfgS")
+        setIsViewForm(true);
+    } 
+
     return (
         <div className="dashboard-container">
             <header className="dashboard-header">
@@ -44,7 +55,9 @@ export default function JobDashboard() {
                 </div>
             </header>
             {/* <Loader size={50} color="lightgray"/> */}
-            <CreateJob />
+            {/* <CreateJob /> */}
+            {isViewForm ? <CreateJob handleCloseForm={handleCloseForm} /> : <PostLists handleOpenForm={handleOpenForm} />}
+
 
             <footer className="dashboard-footer">
                 © {new Date().getFullYear()} Government Job Portal | All Rights Reserved
