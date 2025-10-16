@@ -43,7 +43,7 @@ export default function JobDashboard() {
     const handleOpenForm = () => {
         console.log("sfgS")
         setIsViewForm(true);
-    } 
+    }
 
     return (
         <div className="dashboard-container">
@@ -54,10 +54,8 @@ export default function JobDashboard() {
                     <button onClick={handleLogout}>Logout</button>
                 </div>
             </header>
-            {/* <Loader size={50} color="lightgray"/> */}
-            {/* <CreateJob /> */}
-            {isViewForm ? <CreateJob handleCloseForm={handleCloseForm} /> : <PostLists handleOpenForm={handleOpenForm} />}
 
+            {isViewForm ? <CreateJob handleCloseForm={handleCloseForm} /> : <PostLists handleOpenForm={handleOpenForm} />}
 
             <footer className="dashboard-footer">
                 © {new Date().getFullYear()} Government Job Portal | All Rights Reserved

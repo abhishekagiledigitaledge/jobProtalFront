@@ -8,6 +8,7 @@ import { jobChipList } from "@/src/utils/constants";
 import JobTypeCard from "@/src/components/JobTypeCard";
 import NewJobCard from "@/src/components/NewJobCard";
 import JobListCard from "@/src/components/JobListCard";
+import JobsAdmitResultSection from "@/src/components/Jobs/JobsAdmitResultSection";
 
 const RecentJobCard = dynamic(
   () => import("@/src/components/RecentJobCard"),
@@ -41,7 +42,8 @@ export default function Home() {
 
         <JobTypeCard />
 
-        <JobListCard />
+        {/* <JobListCard /> */}
+        <JobsAdmitResultSection />
 
         <div className="ads_banner_wrapp">
           <AdsCard />
