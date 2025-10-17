@@ -5,6 +5,7 @@ import './results.scss'
 import { useRouter } from "next/navigation";
 import { fetcher } from '@/src/components/fetcher';
 import '../latest-jobs/ViewJobs.css';
+import Loader from '@/src/components/Loader/Loader';
 
 const latestJobs = () => {
     const [jobs, setJobs] = useState([]);
@@ -39,7 +40,7 @@ const latestJobs = () => {
         if (page > 1) setPage(page - 1);
     };
 
-    if (loading) return <p className="loading">Loading jobs...</p>;
+    if (loading) return <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '50vh'}}><Loader size={50} /></div>
 
 
     return (

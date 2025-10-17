@@ -221,14 +221,12 @@ const CreateJob = ({ handleCloseForm }) => {
         discoverMoreLinks: discoverMore,
       };
 
-      const response = await fetcher("/naukari", {
+      const result = await fetcher("/naukari", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
         credentials: "include",
       });
-
-      const result = await response.json();
 
       if (result.success) {
         setMessage({ type: "success", text: "Job created successfully!" });
@@ -242,6 +240,7 @@ const CreateJob = ({ handleCloseForm }) => {
         setSeoEditorData("");
         setData("");
         setErrors({});
+        handleCloseForm();
       } else {
         setMessage({ type: "error", text: result.message || "Failed to create job" });
       }

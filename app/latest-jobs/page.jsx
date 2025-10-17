@@ -4,6 +4,7 @@ import "./ViewJobs.css";
 import './latest-job.scss'
 import { useRouter } from "next/navigation";
 import { fetcher } from "@/src/components/fetcher";
+import Loader from "@/src/components/Loader/Loader";
 
 const ViewJobs = () => {
     const [jobs, setJobs] = useState([]);
@@ -38,7 +39,7 @@ const ViewJobs = () => {
         if (page > 1) setPage(page - 1);
     };
 
-    if (loading) return <p className="loading">Loading jobs...</p>;
+    if (loading) return <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '50vh'}}><Loader size={50} /></div>
 
     return (
         <div className="admin-card-container">

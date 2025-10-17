@@ -41,7 +41,6 @@ export default function JobDashboard() {
     }
 
     const handleOpenForm = () => {
-        console.log("sfgS")
         setIsViewForm(true);
     }
 
