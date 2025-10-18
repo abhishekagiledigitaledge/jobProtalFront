@@ -63,7 +63,7 @@ const SectionDynamicPage = () => {
                         <div
                             key={job.naukari_id}
                             className="job-title"
-                            onClick={() => router.push(`/naukari/${job.slug}`)}
+                            onClick={() => router.push(`/${job.seo_section}/${job.slug}`)}
                         >
                             {job.title}
                         </div>

@@ -42,7 +42,7 @@ const JobsAdmitResultSection = () => {
                     data.map((item) => (
                         <a
                             key={item.naukari_id}
-                            href={`/naukari/${item.slug}`}
+                            href={`/${item.seo_section}/${item.slug}`}
                             className="card-link"
                         >
                             {item.title}
