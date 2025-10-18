@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CkEditor from "../CustomEditor/CkEditor";
 import { FaArrowLeft, FaTrash, FaPlus } from "react-icons/fa";
 import "./CreateJob.css";
@@ -40,6 +40,20 @@ const CreateJob = ({ handleCloseForm }) => {
 
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState({ type: "", text: "" });
+
+  const [sections, setSections] = useState([]);
+
+  useEffect(() => {
+    const fetchSections = async () => {
+      try {
+        const res = await fetcher("/section");
+        if (res && res.data) setSections(res.data);
+      } catch (error) {
+        console.error("Error fetching sections:", error);
+      }
+    };
+    fetchSections();
+  }, []);
 
   // Add or remove entire sections
   const handleAddUsefulSection = () => {
@@ -568,7 +582,7 @@ const CreateJob = ({ handleCloseForm }) => {
               )}
             </div>
 
-            <div className="form-group">
+            {/* <div className="form-group">
               <label>Section</label>
               <input
                 type="text"
@@ -577,6 +591,24 @@ const CreateJob = ({ handleCloseForm }) => {
                 onChange={handleChange}
                 placeholder="Enter Section..."
               />
+              {errors.seo_section && (
+                <span className="error">{errors.seo_section}</span>
+              )}
+            </div> */}
+            <div className="form-group">
+              <label>Section</label>
+              <select
+                name="seo_section"
+                value={seoData.seo_section}
+                onChange={handleChange}
+              >
+                <option value="">Select Section</option>
+                {sections.map((section) => (
+                  <option key={section.section_id} value={section.url}>
+                    {section.display_name}
+                  </option>
+                ))}
+              </select>
               {errors.seo_section && (
                 <span className="error">{errors.seo_section}</span>
               )}

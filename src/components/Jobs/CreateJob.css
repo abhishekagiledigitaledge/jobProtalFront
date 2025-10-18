@@ -222,4 +222,30 @@
   background: #c62828;
 }
 
+.form-group select {
+  padding: 10px 12px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  color: #333;
+  background-color: #fff;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
 
+.form-group select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
+}
+
+.form-group select option {
+  padding: 8px;
+}
+
+.form-group .error {
+  color: #e74c3c;
+  font-size: 13px;
+  margin-top: 4px;
+}

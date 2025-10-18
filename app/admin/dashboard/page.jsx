@@ -47,22 +47,24 @@ export default function AdminDashboard() {
         <section className="stats-grid">
           <Link href="/admin/job" className="no-underline">
             <div className="stat-card blue">
-              <h3>Total Jobs</h3>
-              <p>154</p>
+              <h3>Jobs</h3>
+              <p>5</p>
             </div>
           </Link>
-          <div className="stat-card green">
-            <h3>Active Jobs</h3>
-            <p>98</p>
-          </div>
-          <div className="stat-card orange">
+          <Link href="/admin/section" className="no-underline">
+            <div className="stat-card green">
+              <h3>Sections</h3>
+              <p>5</p>
+            </div>
+          </Link>
+          {/* <div className="stat-card orange">
             <h3>Applications Received</h3>
             <p>12,543</p>
           </div>
           <div className="stat-card red">
             <h3>Pending Approvals</h3>
             <p>23</p>
-          </div>
+          </div> */}
         </section>
 
         <section className="recent-activity">
