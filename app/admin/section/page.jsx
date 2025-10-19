@@ -9,10 +9,10 @@ import SectionLists from "@/src/components/Jobs/SectionLists";
 export default function SectionDashboard() {
     const [adminName, setAdminName] = useState("Admin");
     const [isViewForm, setIsViewForm] = useState(false);
+    const [editData, setEditData] = useState(null);
     const router = useRouter();
 
     useEffect(() => {
-        // Check token in cookies
         const token = Cookies.get("job_portal");
         if (!token) {
             router.push("/admin/login");
@@ -37,9 +37,15 @@ export default function SectionDashboard() {
 
     const handleCloseForm = () => {
         setIsViewForm(false);
-    }
+        setEditData(null);
+    };
 
     const handleOpenForm = () => {
+        setIsViewForm(true);
+    };
+
+    const handleEditData = async (data) => {
+        setEditData(data);
         setIsViewForm(true);
     }
 
@@ -53,7 +59,7 @@ export default function SectionDashboard() {
                 </div>
             </header>
 
-            {isViewForm ? <CreateSection handleCloseForm={handleCloseForm} /> : <SectionLists handleOpenForm={handleOpenForm} />}
+            {isViewForm ? <CreateSection editData={editData} handleCloseForm={handleCloseForm} /> : <SectionLists handleEditData={handleEditData} handleOpenForm={handleOpenForm} />}
 
             <footer className="dashboard-footer">
                 © {new Date().getFullYear()} Government Job Portal | All Rights Reserved

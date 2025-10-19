@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import "./JobsAdmitResultSection.css";
 import { fetcher } from "../fetcher";
+import Loader from "../Loader/Loader";
 
 const JobsAdmitResultSection = () => {
     const [jobs, setJobs] = useState([]);
@@ -31,7 +32,7 @@ const JobsAdmitResultSection = () => {
         fetchData();
     }, []);
 
-    if (loading) return <p className="loading">Loading...</p>;
+    if (loading) return <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '30vh'}}><Loader size={50} /></div>;
 
     const Card = ({ title, data, color }) => (
         <div className="card">

@@ -1,20 +1,16 @@
-"use client";
-import Link from "next/link";
-import MainBanner from "@/src/components/LandingPage/Banner";
 import dynamic from "next/dynamic";
 import AdsCard from "@/src/components/AdsCard";
 import JobsChip from "@/src/components/JobsChip";
 import { jobChipList } from "@/src/utils/constants";
 import JobTypeCard from "@/src/components/JobTypeCard";
 import NewJobCard from "@/src/components/NewJobCard";
-import JobListCard from "@/src/components/JobListCard";
 import JobsAdmitResultSection from "@/src/components/Jobs/JobsAdmitResultSection";
+import RecentJobCard from "@/src/components/RecentJobCard";
 
-const RecentJobCard = dynamic(
-  () => import("@/src/components/RecentJobCard"),
-  { ssr: false }
-);
-
+// const RecentJobCard = dynamic(
+//   () => import("@/src/components/RecentJobCard"),
+//   { ssr: false }
+// );
 
 export default function Home() {
 

@@ -2,60 +2,26 @@ import React from "react";
 import CustomSlider from "../CustomSlider";
 import style from "./index.module.scss";
 
-const JobTypeCard = () => {
-  const cardList = [
-    {
-      id: 1,
-      title: "Delhi Police",
-      imgUrl: "/img/ic1.png",
-      url: "/job-type/delhi-police",
-    },
-    {
-      id: 2,
-      title: "Railway",
-      imgUrl: "/img/ic2.png",
-      url: "#",
-    },
-    {
-      id: 3,
-      title: "Bank",
-      imgUrl: "/img/ic3.png",
-      url: "#",
-    },
-    {
-      id: 4,
-      title: "Indian Post",
-      imgUrl: "/img/ic4.png",
-      url: "#",
-    },
-    {
-      id: 5,
-      title: "CBI",
-      imgUrl: "/img/ic5.png",
-      url: "#",
-    },
+const JobTypeCard = async () => {
 
-    {
-      id: 6,
-      title: "Indian Army",
-      imgUrl: "/img/ic6.png",
-      url: "#",
-    },
-    {
-      id: 7,
-      title: "ISRO",
-      imgUrl: "/img/ic7.png",
-      url: "#",
-    },
-    
-    {
-      id: 8,
-      title: "AIIMS",
-      imgUrl: "/img/ic8.png",
-      url: "#",
-    },
-    
-  ];
+  const NEXT_URL = 'http://localhost:5500';
+
+  const res = await fetch(`${NEXT_URL}/api/section?page=1&limit=10`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    console.error("Failed to fetch sections");
+    return null;
+  }
+
+  const data = await res.json();
+  const cardList = data?.data?.map((item, index) => ({
+    id: index + 1,
+    title: item?.display_name,
+    imgUrl: `${NEXT_URL}${item?.img_url}`,
+    url: `/${item?.url}`,
+  })) || [];
 
   const sliderSetting = {
     slidesToShow: 7,
@@ -64,20 +30,18 @@ const JobTypeCard = () => {
   };
   return (
     <div className={style.jobMainWrap}>
-      <CustomSlider customSettings={sliderSetting} className="revenueCardSlide">
         {cardList?.map((item, index) => {
           return (
-            <div className={style.jobTypeCardWrap} key={item.title + index}>
+            <div className={style.jobTypeCardWrap} key={index}>
               <a href={item.url}>
-              <div className={style.iconWrap}>
-                <img src={item.imgUrl} alt={item.title} />
-              </div>
-              <h4>{item.title}</h4>
+                <div className={style.iconWrap}>
+                  <img src={item.imgUrl} alt={item.title} />
+                </div>
+                <h4>{item.title}</h4>
               </a>
             </div>
           );
         })}
-      </CustomSlider>
     </div>
   );
 };

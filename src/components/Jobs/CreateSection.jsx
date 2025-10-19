@@ -1,124 +1,11 @@
-// "use client";
-// import React, { useState } from "react";
-// import { FaArrowLeft } from "react-icons/fa";
-// import "./CreateJob.css";
-// import { fetcher } from "../fetcher";
-
-// const CreateSection = ({ handleCloseForm }) => {
-//   const [formData, setFormData] = useState({
-//     display_name: "",
-//     url: "",
-//   });
-
-//   const [errors, setErrors] = useState({});
-//   const [message, setMessage] = useState({ type: "", text: "" });
-
-//   const handleChange = (e) => {
-//     setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
-//   };
-
-//   // ✅ Validation
-//   const validateForm = () => {
-//     const newErrors = {};
-
-//     if (!formData.display_name.trim()) newErrors.title = "Display Name is required";
-//     if (!formData.url) newErrors.postDate = "URL is required";
-
-//     setErrors(newErrors);
-//     return Object.keys(newErrors).length === 0;
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     setMessage({ type: "", text: "" });
-
-//     if (!validateForm()) return;
-
-//     try {
-//       const payload = {
-//         ...formData,
-//       };
-
-//       const result = await fetcher("/section", {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify(payload),
-//         credentials: "include",
-//       });
-
-//       if (result.success) {
-//         setMessage({ type: "success", text: "Job created successfully!" });
-//         setFormData({ display_name: "", url: "" });
-//         setErrors({});
-//         handleCloseForm();
-//       } else {
-//         setMessage({ type: "error", text: result.message || "Failed to create job" });
-//       }
-//     } catch (error) {
-//       setMessage({ type: "error", text: error.message || "Failed to create job" });
-//     }
-//   };
-
-//   return (
-//     <div className="create-job-container">
-//       <div className="header-links">
-//         <a className="back-link" onClick={handleCloseForm}>
-//           <FaArrowLeft /> Back
-//         </a>
-//       </div>
-
-//       <div className="form-card">
-//         <h2>Create Section</h2>
-
-//         {message.text && (
-//           <div className={`message ${message.type}`}>{message.text}</div>
-//         )}
-
-//         <form onSubmit={handleSubmit}>
-//           {/* Basic Job Info */}
-//           <div className="form-group">
-//             <label>Display Name</label>
-//             <input
-//               type="text"
-//               name="display_name"
-//               value={formData.display_name}
-//               onChange={handleChange}
-//               placeholder="Enter Display Name..."
-//             />
-//             {errors.display_name && <span className="error">{errors.display_name}</span>}
-//           </div>
-
-//           <div className="form-group">
-//             <label>URL</label>
-//             <input
-//               type="text"
-//               name="url"
-//               value={formData.url}
-//               onChange={handleChange}
-//               placeholder="Enter URL..."
-//             />
-//             {errors.url && <span className="error">{errors.url}</span>}
-//           </div>
-
-
-//           <button type="submit" className="submit-btn">
-//             Create Section
-//           </button>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default CreateSection;
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import imageCompression from "browser-image-compression";
 import "./CreateJob.css";
 import { fetcher } from "../fetcher";
 
-const CreateSection = ({ handleCloseForm }) => {
+const CreateSection = ({ handleCloseForm, editData }) => {
   const [formData, setFormData] = useState({
     display_name: "",
     url: "",
@@ -128,6 +15,19 @@ const CreateSection = ({ handleCloseForm }) => {
   const [preview, setPreview] = useState(null);
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState({ type: "", text: "" });
+  const isEditMode = !!editData;
+
+  // ✅ Prefill data when editing
+  useEffect(() => {
+    if (isEditMode && editData) {
+      setFormData({
+        display_name: editData.display_name || "",
+        url: editData.url || "",
+        img_url: null, // File upload will replace this
+      });
+      setPreview(`http://localhost:5500${editData.img_url}`);
+    }
+  }, [editData]);
 
   // ✅ Handle input & compress image if large
   const handleChange = async (e) => {
@@ -135,18 +35,15 @@ const CreateSection = ({ handleCloseForm }) => {
 
     if (type === "file" && files.length > 0) {
       const file = files[0];
-
-      // If image is large, compress it
       const options = {
-        maxSizeMB: 0.5, // Target max size (500KB)
-        maxWidthOrHeight: 800, // Resize longer side if large
+        maxSizeMB: 0.5,
+        maxWidthOrHeight: 800,
         useWebWorker: true,
       };
 
       try {
         let compressedFile = file;
 
-        // Compress only if larger than 1MB
         if (file.size / 1024 / 1024 > 1) {
           compressedFile = await imageCompression(file, options);
           console.log(
@@ -171,13 +68,14 @@ const CreateSection = ({ handleCloseForm }) => {
     if (!formData.display_name.trim())
       newErrors.display_name = "Display Name is required";
     if (!formData.url.trim()) newErrors.url = "URL is required";
-    if (!formData.img_url) newErrors.img_url = "Image is required";
+    if (!isEditMode && !formData.img_url)
+      newErrors.img_url = "Image is required";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  // ✅ Submit form
+  // ✅ Submit form (Create or Edit)
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage({ type: "", text: "" });
@@ -188,30 +86,46 @@ const CreateSection = ({ handleCloseForm }) => {
       const data = new FormData();
       data.append("display_name", formData.display_name);
       data.append("url", formData.url);
-      data.append("img_url", formData.img_url);
 
-      const result = await fetcher("/section", {
-        method: "POST",
+      if (formData.img_url instanceof File) {
+        data.append("img_url", formData.img_url);
+      }
+
+      const method = isEditMode ? "PUT" : "POST";
+      const endpoint = isEditMode
+        ? `/section/${editData.section_id}`
+        : "/section";
+
+      const result = await fetcher(endpoint, {
+        method,
         body: data,
         credentials: "include",
       });
 
       if (result.success) {
-        setMessage({ type: "success", text: "Section created successfully!" });
-        setFormData({ display_name: "", url: "", img_url: null });
-        setPreview(null);
+        setMessage({
+          type: "success",
+          text: `Section ${isEditMode ? "updated" : "created"} successfully!`,
+        });
+
+        // Reset form after success
+        if (!isEditMode) {
+          setFormData({ display_name: "", url: "", img_url: null });
+          setPreview(null);
+        }
+
         setErrors({});
-        handleCloseForm();
+        setTimeout(() => handleCloseForm(), 800);
       } else {
         setMessage({
           type: "error",
-          text: result.message || "Failed to create section",
+          text: result.message || "Operation failed",
         });
       }
     } catch (error) {
       setMessage({
         type: "error",
-        text: error.message || "Failed to create section",
+        text: error.message || "Something went wrong",
       });
     }
   };
@@ -225,7 +139,7 @@ const CreateSection = ({ handleCloseForm }) => {
       </div>
 
       <div className="form-card">
-        <h2>Create Section</h2>
+        <h2>{isEditMode ? "Edit Section" : "Create Section"}</h2>
 
         {message.text && (
           <div className={`message ${message.type}`}>{message.text}</div>
@@ -282,7 +196,7 @@ const CreateSection = ({ handleCloseForm }) => {
           </div>
 
           <button type="submit" className="submit-btn">
-            Create Section
+            {isEditMode ? "Update Section" : "Create Section"}
           </button>
         </form>
       </div>
@@ -291,4 +205,5 @@ const CreateSection = ({ handleCloseForm }) => {
 };
 
 export default CreateSection;
+
 

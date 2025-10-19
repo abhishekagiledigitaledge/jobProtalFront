@@ -4,14 +4,15 @@ import Loader from "../Loader/Loader";
 import { fetcher } from "../fetcher";
 import { FaEdit, FaTrash, FaEye } from "react-icons/fa";
 import "./PostLists.css";
+import ConfirmBox from "./ConfirmBox";
 
-const SectionLists = ({ handleOpenForm }) => {
+const SectionLists = ({ handleOpenForm, handleEditData }) => {
     const [posts, setPosts] = useState([]);
     const [pagination, setPagination] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [page, setPage] = useState(1);
-    const [selectedPost, setSelectedPost] = useState(null);
+    const [confirmDelete, setConfirmDelete] = useState(null);
     const limit = 10;
 
     const fetchPosts = async () => {
@@ -70,7 +71,7 @@ const SectionLists = ({ handleOpenForm }) => {
                             </thead>
                             <tbody>
                                 {posts.map((post, index) => (
-                                    <tr key={post.naukari_id}>
+                                    <tr key={post.section_id}>
                                         <td>{(page - 1) * limit + index + 1}</td>
                                         <td className="truncate-title"><img src={`http://localhost:5500${post?.img_url}`} />{post.image}</td>
                                         <td className="truncate-title">{post.display_name}</td>
@@ -86,12 +87,12 @@ const SectionLists = ({ handleOpenForm }) => {
                                             <FaEdit
                                                 title="Edit"
                                                 className="icon edit"
-                                                onClick={() => alert(`Edit Post: ${post.title}`)}
+                                                onClick={() => handleEditData(post)}
                                             />
                                             <FaTrash
                                                 title="Delete"
                                                 className="icon delete"
-                                                onClick={() => alert(`Delete Post: ${post.title}`)}
+                                                onClick={() => setConfirmDelete(post)}
                                             />
                                         </td>
                                     </tr>
@@ -122,6 +123,32 @@ const SectionLists = ({ handleOpenForm }) => {
                     )}
 
                 </>
+            )}
+
+
+            {confirmDelete && (
+                <ConfirmBox
+                    message={`Are you sure you want to delete "${confirmDelete.display_name}" section?`}
+                    onConfirm={async () => {
+                        try {
+                            const result = await fetcher(`/section/${confirmDelete.section_id}`, {
+                                method: "DELETE",
+                                credentials: "include",
+                            });
+
+                            if (result.success) {
+                                // alert("Section deleted successfully!");
+                                setConfirmDelete(null);
+                                fetchPosts(); // reload list
+                            } else {
+                                alert(result.message || "Failed to delete section");
+                            }
+                        } catch (err) {
+                            alert("Something went wrong while deleting section.");
+                        }
+                    }}
+                    onCancel={() => setConfirmDelete(null)}
+                />
             )}
         </div>
     );
