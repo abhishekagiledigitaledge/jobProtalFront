@@ -25,7 +25,8 @@ const CreateSection = ({ handleCloseForm, editData }) => {
         url: editData.url || "",
         img_url: null, // File upload will replace this
       });
-      setPreview(`http://localhost:5500${editData.img_url}`);
+      // setPreview(`http://localhost:5500${editData.img_url}`);
+      setPreview(`https://jobportalapp.agileappdemo.com${editData.img_url}`);
     }
   }, [editData]);
 
