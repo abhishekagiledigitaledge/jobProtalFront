@@ -651,11 +651,14 @@
 
 // export default CreateJob;
 "use client";
+
 import React, { useEffect, useState } from "react";
-import CkEditor from "../CustomEditor/CkEditor";
+// import CkEditor from "../CustomEditor/CkEditor";
 import { FaArrowLeft, FaTrash, FaPlus } from "react-icons/fa";
 import "./CreateJob.css";
 import { fetcher } from "../fetcher";
+import dynamic from "next/dynamic";
+const CkEditor = dynamic(() => import("../CustomEditor/CkEditor"), { ssr: false });
 
 const CreateJob = ({ handleCloseForm, editData }) => {
   const [editorData, setEditorData] = useState("");
@@ -1179,7 +1182,7 @@ const CreateJob = ({ handleCloseForm, editData }) => {
                 <span className="error">{errors.seo_category}</span>
               )}
             </div>
-           </div>
+          </div>
 
           <button type="submit" className="submit-btn">
             {editData ? "Update Job" : "Create Job"}
