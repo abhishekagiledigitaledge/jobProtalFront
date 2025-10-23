@@ -39,10 +39,6 @@ import "ckeditor5/ckeditor5.css";
 const CkEditor = ({ editData, editorData, setEditorData, handleOnUpdate }) => {
   const editorRef = useRef(null);
 
-  // useEffect(() => {
-  //   console.log("what is editorData: ", editorData);
-  // }, [editorData]);
-
   useEffect(() => {
     if (editData?.description && editorRef.current) {
       editorRef.current.setData(editData.description);

@@ -164,6 +164,7 @@
 
 // export default PostLists;
 "use client";
+
 import React, { useEffect, useState } from "react";
 import Loader from "../Loader/Loader";
 import { fetcher } from "../fetcher";
