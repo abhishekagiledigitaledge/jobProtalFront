@@ -73,7 +73,8 @@ const SectionLists = ({ handleOpenForm, handleEditData }) => {
                                 {posts.map((post, index) => (
                                     <tr key={post.section_id}>
                                         <td>{(page - 1) * limit + index + 1}</td>
-                                        <td className="truncate-title"><img src={`http://localhost:5500${post?.img_url}`} />{post.image}</td>
+                                        {/* <td className="truncate-title"><img src={`http://localhost:5500${post?.img_url}`} />{post.image}</td> */}
+                                        <td className="truncate-title"><img src={`https://jobportalapp.agileappdemo.com${post?.img_url}`} />{post.image}</td>
                                         <td className="truncate-title">{post.display_name}</td>
                                         <td>{post.url}</td>
                                         <td>
