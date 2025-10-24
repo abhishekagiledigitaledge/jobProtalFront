@@ -10,6 +10,10 @@ const CreateSection = ({ handleCloseForm, editData }) => {
     display_name: "",
     url: "",
     img_url: null,
+    seo_title: "",
+    seo_keywords: "",
+    seo_published_date: "",
+    seo_description: "",
   });
 
   const [preview, setPreview] = useState(null);
@@ -23,7 +27,14 @@ const CreateSection = ({ handleCloseForm, editData }) => {
       setFormData({
         display_name: editData.display_name || "",
         url: editData.url || "",
-        img_url: null, // File upload will replace this
+        img_url: null,
+
+        seo_title: editData.seo_title || "",
+        seo_keywords: editData.seo_keywords || "",
+        seo_published_date: editData.seo_published_date
+          ? editData.seo_published_date.split("T")[0]
+          : "",
+        seo_description: editData.seo_description || ""
       });
       setPreview(`http://localhost:5500${editData.img_url}`);
       // setPreview(`https://jobportalapp.agileappdemo.com/backend${editData.img_url}`);
@@ -86,6 +97,10 @@ const CreateSection = ({ handleCloseForm, editData }) => {
     try {
       const data = new FormData();
       data.append("display_name", formData.display_name);
+      data.append("seo_title", formData.seo_title);
+      data.append("seo_keywords", formData.seo_keywords);
+      data.append("seo_published_date", formData.seo_published_date);
+      data.append("seo_description", formData.seo_description);
       data.append("url", formData.url);
 
       if (formData.img_url instanceof File) {
@@ -194,6 +209,65 @@ const CreateSection = ({ handleCloseForm, editData }) => {
                 }}
               />
             )}
+          </div>
+
+          {/* SEO Section */}
+          <div className="seo-section">
+            <h3>SEO Details</h3>
+
+            <div className="form-group">
+              <label>SEO Title</label>
+              <input
+                type="text"
+                name="seo_title"
+                value={formData.seo_title}
+                onChange={handleChange}
+                placeholder="Enter SEO title..."
+              />
+              {errors.seo_title && <span className="error">{errors.seo_title}</span>}
+            </div>
+
+            <div className="form-group">
+              <label>SEO Keywords</label>
+              <input
+                type="text"
+                name="seo_keywords"
+                value={formData.seo_keywords}
+                onChange={handleChange}
+                placeholder="Enter comma-separated keywords..."
+              />
+              {errors.seo_keywords && (
+                <span className="error">{errors.seo_keywords}</span>
+              )}
+            </div>
+
+            <div className="form-group">
+              <label>SEO Published Date</label>
+              <input
+                type="date"
+                name="seo_published_date"
+                value={formData.seo_published_date}
+                onChange={handleChange}
+              />
+              {errors.seo_published_date && (
+                <span className="error">{errors.seo_published_date}</span>
+              )}
+            </div>
+
+            <div className="form-group">
+              <label>SEO Description</label>
+              <input
+                type="text"
+                name="seo_description"
+                value={formData.seo_description}
+                onChange={handleChange}
+                placeholder="Enter SEO Description..."
+              />
+              {errors.seo_description && (
+                <span className="error">{errors.seo_description}</span>
+              )}
+            </div>
+
           </div>
 
           <button type="submit" className="submit-btn">

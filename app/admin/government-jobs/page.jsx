@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import "../dashboard/dashboard.css";
-import CreateSection from "@/src/components/Jobs/CreateSection";
-import SectionLists from "@/src/components/Jobs/SectionLists";
+import GovernmentJobsLists from "@/src/components/Jobs/GovernmentJobsLists";
+import CreateGovernmentJobs from "@/src/components/Jobs/CreateGovernmentJobs";
 import Link from "next/link";
 
-export default function SectionDashboard() {
+export default function HomeLinksDashboard() {
     const [adminName, setAdminName] = useState("Admin");
     const [isViewForm, setIsViewForm] = useState(false);
     const [editData, setEditData] = useState(null);
@@ -53,7 +53,7 @@ export default function SectionDashboard() {
     return (
         <div className="dashboard-container">
             <header className="dashboard-header">
-                <h1>Government Job Portal</h1>
+                <h1>Government Jobs</h1>
                 <div className="admin-info">
                     <Link href="/admin/dashboard">Click for Dashboard</Link>
                     <span>Welcome, <b>{adminName}</b></span>
@@ -61,7 +61,7 @@ export default function SectionDashboard() {
                 </div>
             </header>
 
-            {isViewForm ? <CreateSection editData={editData} handleCloseForm={handleCloseForm} /> : <SectionLists handleEditData={handleEditData} handleOpenForm={handleOpenForm} />}
+            {isViewForm ? <CreateGovernmentJobs editData={editData} handleCloseForm={handleCloseForm} /> : <GovernmentJobsLists handleEditData={handleEditData} handleOpenForm={handleOpenForm} />}
 
             <footer className="dashboard-footer">
                 © {new Date().getFullYear()} Government Job Portal | All Rights Reserved

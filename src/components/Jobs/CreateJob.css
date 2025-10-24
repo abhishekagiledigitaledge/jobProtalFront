@@ -29,7 +29,8 @@
 }
 
 .create-job-container {
-  max-width: 1200px;
+  max-width: 1400px;
+  min-width: 70vw;
   margin: 20px auto;
   padding: 20px;
   font-family: "Poppins", sans-serif;
@@ -87,7 +88,8 @@
 }
 
 .form-group input[type="text"],
-.form-group input[type="date"] {
+.form-group input[type="date"],
+.form-group input[type="number"] {
   width: 100%;
   padding: 10px 12px;
   font-size: 15px;

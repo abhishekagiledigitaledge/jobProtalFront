@@ -80,6 +80,7 @@ import "../dashboard/dashboard.css";
 import CreateJob from "@/src/components/Jobs/CreateJob";
 import PostLists from "@/src/components/Jobs/PostLists";
 import { fetcher } from "@/src/components/fetcher";
+import Link from "next/link";
 
 export default function JobDashboard() {
     const [adminName, setAdminName] = useState("Admin");
@@ -133,6 +134,7 @@ export default function JobDashboard() {
             <header className="dashboard-header">
                 <h1>Government Job Portal</h1>
                 <div className="admin-info">
+                    <Link href="/admin/dashboard">Click for Dashboard</Link>
                     <span>Welcome, <b>{adminName}</b></span>
                     <button onClick={handleLogout}>Logout</button>
                 </div>

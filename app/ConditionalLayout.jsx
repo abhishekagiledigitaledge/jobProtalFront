@@ -8,7 +8,7 @@ import Footer from "@/src/components/Footer";
 export default function ConditionalLayout({ children }) {
   const pathname = usePathname();
 
-  const noLayoutRoutes = ["/admin/login", "/admin/dashboard", "/admin/section", "/admin/job"];
+  const noLayoutRoutes = ["/admin/login", "/admin/dashboard", "/admin/section", "/admin/job", "/admin/home-links", "/admin/government-jobs"];
 
   const hideLayout = noLayoutRoutes.some((route) =>
     pathname?.startsWith(route)

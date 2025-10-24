@@ -48,23 +48,27 @@ export default function AdminDashboard() {
           <Link href="/admin/job" className="no-underline">
             <div className="stat-card blue">
               <h3>Jobs</h3>
-              <p>5</p>
+              {/* <p>5</p> */}
             </div>
           </Link>
           <Link href="/admin/section" className="no-underline">
             <div className="stat-card green">
               <h3>Sections</h3>
-              <p>5</p>
+              {/* <p>5</p> */}
             </div>
           </Link>
-          {/* <div className="stat-card orange">
-            <h3>Applications Received</h3>
-            <p>12,543</p>
-          </div>
+          <Link href="/admin/home-links" className="no-underline">
+            <div className="stat-card orange">
+              <h3>Home Links</h3>
+              {/* <p>12,543</p> */}
+            </div>
+          </Link>
+          <Link href="/admin/government-jobs" className="no-underline">
           <div className="stat-card red">
-            <h3>Pending Approvals</h3>
-            <p>23</p>
-          </div> */}
+            <h3>Government Jobs</h3>
+            {/* <p>23</p> */}
+          </div>
+          </Link>
         </section>
 
         <section className="recent-activity">
