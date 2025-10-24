@@ -4,8 +4,8 @@ import style from "./index.module.scss";
 
 const JobTypeCard = async () => {
 
-  // const NEXT_URL = 'http://localhost:5500';
-  const NEXT_URL = 'https://jobportalapp.agileappdemo.com/backend';
+  const NEXT_URL = 'http://localhost:5500';
+  // const NEXT_URL = 'https://jobportalapp.agileappdemo.com/backend';
 
   const res = await fetch(`${NEXT_URL}/api/section?page=1&limit=10`, {
     cache: "no-store",
