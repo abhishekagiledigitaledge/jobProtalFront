@@ -1,22 +1,16 @@
 import React from "react";
-import CustomSlider from "../CustomSlider";
 import style from "./index.module.scss";
+import { fetcher } from "../fetcher";
 
 const JobTypeCard = async () => {
 
-  const NEXT_URL = 'http://localhost:5500';
-  // const NEXT_URL = 'https://jobportalapp.agileappdemo.com/backend';
+  // const NEXT_URL = 'http://localhost:5500';
+  const NEXT_URL = 'https://jobportalapp.agileappdemo.com/backend';
 
-  const res = await fetch(`${NEXT_URL}/api/section?page=1&limit=10`, {
-    cache: "no-store",
+  const data = await fetcher(`/section?page=1&limit=10`, {
+    next: { revalidate: 120 },
   });
 
-  if (!res.ok) {
-    console.error("Failed to fetch sections");
-    return null;
-  }
-
-  const data = await res.json();
   const cardList = data?.data?.map((item, index) => ({
     id: index + 1,
     title: item?.display_name,
@@ -24,25 +18,20 @@ const JobTypeCard = async () => {
     url: `/${item?.url}`,
   })) || [];
 
-  const sliderSetting = {
-    slidesToShow: 7,
-    infinite: true,
-    arrows: false,
-  };
   return (
     <div className={style.jobMainWrap}>
-        {cardList?.map((item, index) => {
-          return (
-            <div className={style.jobTypeCardWrap} key={index}>
-              <a href={item.url}>
-                <div className={style.iconWrap}>
-                  <img src={item.imgUrl} alt={item.title} />
-                </div>
-                <h4>{item.title}</h4>
-              </a>
-            </div>
-          );
-        })}
+      {cardList?.map((item, index) => {
+        return (
+          <div className={style.jobTypeCardWrap} key={index}>
+            <a href={item.url}>
+              <div className={style.iconWrap}>
+                <img src={item.imgUrl} alt={item.title} />
+              </div>
+              <h4>{item.title}</h4>
+            </a>
+          </div>
+        );
+      })}
     </div>
   );
 };

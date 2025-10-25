@@ -4,9 +4,12 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import "./dashboard.css";
 import Link from "next/link";
+import UpdateHomeText from "@/src/components/Jobs/UpdateHomeText";
+import { fetcher } from "@/src/components/fetcher";
 
 export default function AdminDashboard() {
   const [adminName, setAdminName] = useState("Admin");
+  const [editData, setEditData] = useState({});
   const router = useRouter();
 
   useEffect(() => {
@@ -26,6 +29,22 @@ export default function AdminDashboard() {
       setAdminName("Admin");
     }
   }, [router]);
+
+    const fetchPosts = async () => {
+      try {
+        const data = await fetcher(`/home/text`);
+        if (!data.success) throw new Error(data.message || "Failed to fetch posts");
+  
+        setEditData(data.data[0] || {});
+      } catch (err) {
+        console.error(err);
+        setError(err.message || "Something went wrong while fetching posts.");
+      }
+    };
+  
+    useEffect(() => {
+      fetchPosts();
+    }, []);
 
   const handleLogout = () => {
     Cookies.remove("job_portal");
@@ -71,7 +90,7 @@ export default function AdminDashboard() {
           </Link>
         </section>
 
-        <section className="recent-activity">
+        {/* <section className="recent-activity">
           <h2>Recent Job Postings</h2>
           <table>
             <thead>
@@ -103,7 +122,8 @@ export default function AdminDashboard() {
               </tr>
             </tbody>
           </table>
-        </section>
+        </section> */}
+        <UpdateHomeText editData={editData}  />
       </main>
 
       <footer className="dashboard-footer">

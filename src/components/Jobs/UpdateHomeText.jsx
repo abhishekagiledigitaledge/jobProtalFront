@@ -5,18 +5,16 @@ import imageCompression from "browser-image-compression";
 import "./CreateJob.css";
 import { fetcher } from "../fetcher";
 
-const CreateSection = ({ handleCloseForm, editData }) => {
+const UpdateHomeText = ({ editData }) => {
   const [formData, setFormData] = useState({
-    display_name: "",
-    url: "",
-    img_url: null,
+    heading1: "",
+    heading2: "",
     seo_title: "",
     seo_keywords: "",
     seo_published_date: "",
     seo_description: "",
   });
 
-  const [preview, setPreview] = useState(null);
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState({ type: "", text: "" });
   const isEditMode = !!editData;
@@ -25,9 +23,8 @@ const CreateSection = ({ handleCloseForm, editData }) => {
   useEffect(() => {
     if (isEditMode && editData) {
       setFormData({
-        display_name: editData.display_name || "",
-        url: editData.url || "",
-        img_url: null,
+        heading1: editData.heading1 || "",
+        heading2: editData.heading2 || "",
 
         seo_title: editData.seo_title || "",
         seo_keywords: editData.seo_keywords || "",
@@ -36,53 +33,20 @@ const CreateSection = ({ handleCloseForm, editData }) => {
           : "",
         seo_description: editData.seo_description || ""
       });
-      // setPreview(`http://localhost:5500${editData.img_url}`);
-      setPreview(`https://jobportalapp.agileappdemo.com/backend${editData.img_url}`);
     }
   }, [editData]);
 
-  // ✅ Handle input & compress image if large
   const handleChange = async (e) => {
-    const { name, value, type, files } = e.target;
-
-    if (type === "file" && files.length > 0) {
-      const file = files[0];
-      const options = {
-        maxSizeMB: 0.5,
-        maxWidthOrHeight: 800,
-        useWebWorker: true,
-      };
-
-      try {
-        let compressedFile = file;
-
-        if (file.size / 1024 / 1024 > 1) {
-          compressedFile = await imageCompression(file, options);
-          console.log(
-            `Compressed from ${(file.size / 1024 / 1024).toFixed(2)} MB → ${(compressedFile.size / 1024 / 1024).toFixed(2)} MB`
-          );
-        }
-
-        setFormData({ ...formData, img_url: compressedFile });
-        setPreview(URL.createObjectURL(compressedFile));
-      } catch (error) {
-        console.error("Image compression failed:", error);
-        setMessage({ type: "error", text: "Image compression failed" });
-      }
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   // ✅ Validation
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.display_name.trim())
-      newErrors.display_name = "Display Name is required";
-    if (!formData.url.trim()) newErrors.url = "URL is required";
-    if (!isEditMode && !formData.img_url)
-      newErrors.img_url = "Image is required";
-
+    if (!formData.heading1.trim())
+      newErrors.heading1 = "Display Name is required";
+    if (!formData.heading2.trim()) newErrors.heading2 = "heading2 is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -96,21 +60,17 @@ const CreateSection = ({ handleCloseForm, editData }) => {
 
     try {
       const data = new FormData();
-      data.append("display_name", formData.display_name);
+      data.append("heading1", formData.heading1);
       data.append("seo_title", formData.seo_title);
       data.append("seo_keywords", formData.seo_keywords);
       data.append("seo_published_date", formData.seo_published_date);
       data.append("seo_description", formData.seo_description);
-      data.append("url", formData.url);
-
-      if (formData.img_url instanceof File) {
-        data.append("img_url", formData.img_url);
-      }
+      data.append("heading2", formData.heading2);
 
       const method = isEditMode ? "PUT" : "POST";
       const endpoint = isEditMode
-        ? `/section/${editData.section_id}`
-        : "/section";
+        ? `/home/text/${editData.home_text_id}`
+        : "/home/text";
 
       const result = await fetcher(endpoint, {
         method,
@@ -126,8 +86,7 @@ const CreateSection = ({ handleCloseForm, editData }) => {
 
         // Reset form after success
         if (!isEditMode) {
-          setFormData({ display_name: "", url: "", img_url: null });
-          setPreview(null);
+          setFormData({ heading1: "", heading2: "" });
         }
 
         setErrors({});
@@ -148,14 +107,9 @@ const CreateSection = ({ handleCloseForm, editData }) => {
 
   return (
     <div className="create-job-container">
-      <div className="header-links">
-        <a className="back-link" onClick={handleCloseForm}>
-          <FaArrowLeft /> Back
-        </a>
-      </div>
 
       <div className="form-card">
-        <h2>{isEditMode ? "Edit Section" : "Create Section"}</h2>
+        <h2>{isEditMode ? "Edit Home Text" : "Create Home Text"}</h2>
 
         {message.text && (
           <div className={`message ${message.type}`}>{message.text}</div>
@@ -163,55 +117,31 @@ const CreateSection = ({ handleCloseForm, editData }) => {
 
         <form onSubmit={handleSubmit} encType="multipart/form-data">
           <div className="form-group">
-            <label>Display Name</label>
+            <label>Heading 1</label>
             <input
               type="text"
-              name="display_name"
-              value={formData.display_name}
+              name="heading1"
+              value={formData.heading1}
               onChange={handleChange}
-              placeholder="Enter Display Name..."
+              placeholder="Enter Heading 1..."
             />
-            {errors.display_name && (
-              <span className="error">{errors.display_name}</span>
+            {errors.heading1 && (
+              <span className="error">{errors.heading1}</span>
             )}
           </div>
 
           <div className="form-group">
-            <label>URL</label>
+            <label>Heading 2</label>
             <input
               type="text"
-              name="url"
-              value={formData.url}
+              name="heading2"
+              value={formData.heading2}
               onChange={handleChange}
-              placeholder="Enter URL..."
+              placeholder="Enter Heading 2..."
             />
-            {errors.url && <span className="error">{errors.url}</span>}
+            {errors.heading2 && <span className="error">{errors.heading2}</span>}
           </div>
 
-          <div className="form-group">
-            <label>Section Image</label>
-            <input
-              type="file"
-              name="img_url"
-              accept="image/*"
-              onChange={handleChange}
-            />
-            {errors.img_url && <span className="error">{errors.img_url}</span>}
-            {preview && (
-              <img
-                src={preview}
-                alt="Preview"
-                style={{
-                  marginTop: "10px",
-                  width: "120px",
-                  height: "auto",
-                  borderRadius: "8px",
-                }}
-              />
-            )}
-          </div>
-
-          {/* SEO Section */}
           <div className="seo-section">
             <h3>SEO Details</h3>
 
@@ -271,7 +201,7 @@ const CreateSection = ({ handleCloseForm, editData }) => {
           </div>
 
           <button type="submit" className="submit-btn">
-            {isEditMode ? "Update Section" : "Create Section"}
+            {isEditMode ? "Update Home Text" : "Create Home Text"}
           </button>
         </form>
       </div>
@@ -279,6 +209,6 @@ const CreateSection = ({ handleCloseForm, editData }) => {
   );
 };
 
-export default CreateSection;
+export default UpdateHomeText;
 
 

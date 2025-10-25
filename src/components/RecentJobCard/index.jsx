@@ -1,8 +1,29 @@
 import React from "react";
 import CustomSlider from "../CustomSlider";
 import style from "./index.module.scss";
+import { fetcher } from "../fetcher";
+import Link from "next/link";
 
-const RecentJobCard = () => {
+async function getCardListsData() {
+  try {
+    const json = await fetcher("/naukari?page=1&limit=5&type=jobs", {
+      next: { revalidate: 120 },
+    });
+    if (json?.success && json?.data?.length > 0) {
+      return json.data?.map((item) => ({
+        title: item?.title,
+        ctaLabel: 'Apply Now',
+        desc: new Date(item?.postDate).toLocaleDateString("en-IN"),
+        url: `/${item.seo_section}/${item.slug}`
+      }));
+    }
+  } catch (error) {
+    console.error("Error fetching home text:", error);
+  }
+  return null;
+}
+
+const RecentJobCard = async () => {
   const cardList = [
     {
       id: 1,
@@ -27,25 +48,29 @@ const RecentJobCard = () => {
     }
   ];
 
+  
+  const apiData = await getCardListsData();
+  const cardLists = apiData?.length >= 3 ? apiData : cardList;
+
   const sliderSetting = {
     slidesToShow: 3,
     infinite: true,
     arrows: false
-  
+
   }
   return (
     <div className={style.jobMainWrap}>
       <div className={style.innerWrap}>
         <CustomSlider customSettings={sliderSetting} className="revenueCardSlide">
-          {cardList?.map((item, index) => {
+          {cardLists?.map((item, index) => {
             return (
               <div className={style.jobCardWrap} key={item.title + index}>
                 <div className={style.iconWrap}>
                   <img src={'/img/new_icon.png'} alt={item.title} />
                 </div>
                 <h4>{item.title}</h4>
-                <a href={item.url}>{item.ctaLabel}</a>
                 <p>{item.desc}</p>
+                <Link href={item.url} target="_blank">{item.ctaLabel}</Link>
               </div>
             );
           })}
