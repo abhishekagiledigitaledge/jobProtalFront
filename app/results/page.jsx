@@ -1,94 +1,81 @@
-// "use client"
-
-// import React, { useEffect, useState } from 'react'
-// import './results.scss'
-// import { useRouter } from "next/navigation";
 // import { fetcher } from '@/src/components/fetcher';
+// import './results.scss';
 // import '../latest-jobs/ViewJobs.css';
-// import Loader from '@/src/components/Loader/Loader';
+// import Link from 'next/link';
 
-// const latestJobs = () => {
-//     const [jobs, setJobs] = useState([]);
-//     const [loading, setLoading] = useState(true);
-//     const [page, setPage] = useState(1);
-//     const [totalPages, setTotalPages] = useState(1);
-//     const router = useRouter();
-//     const limit = 10;
+// const limit = 10;
 
-//     const fetchJobs = async (pageNum = 1) => {
-//         try {
-//             setLoading(true);
-//             const res = await fetcher(`/naukari?page=${pageNum}&limit=${limit}&type=result`);
-//             setJobs(res?.data || []);
-//             setTotalPages(res?.pagination?.totalPages || 1);
-//         } catch (error) {
-//             console.error("Error fetching jobs:", error);
-//         } finally {
-//             setLoading(false);
-//         }
-//     };
+// export default async function LatestResults({ searchParams }) {
+//   const page = Number(searchParams?.page) || 1;
 
-//     useEffect(() => {
-//         fetchJobs(page);
-//     }, [page]);
+//   // ✅ Server-side API call
+//   let res = null;
+//   try {
+//     res = await fetcher(`/naukari?page=${page}&limit=${limit}&type=result`, {
+//       next: { revalidate: 120 },
+//     });
+//   } catch (error) {
+//     console.error("Error fetching results:", error);
+//   }
 
-//     const handleNext = () => {
-//         if (page < totalPages) setPage(page + 1);
-//     };
+//   const jobs = res?.data || [];
+//   const totalPages = res?.pagination?.totalPages || 1;
 
-//     const handlePrev = () => {
-//         if (page > 1) setPage(page - 1);
-//     };
-
-//     if (loading) return <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '50vh'}}><Loader size={50} /></div>
-
-
+//   if (!res || jobs.length === 0) {
 //     return (
-//         <div className="admin-card-container">
-//             <h1 className="heading">Result</h1>
-//             <p className='text'>Welcome to <strong>Sarkari Result.</strong> Stay informed about the
-//                 Result of various competitive exams conducted by government bodies across India, whether
-//                 you are waiting for the Result of any recruitment exam, entrance exam or any other
-//                 government exam then we update the Result from time to time to keep
-//                 you informed. <a href="">Let’s update.</a></p>
-//             <p className="text"><strong>Sarkari Result</strong> में आपका स्वागत है। भारत भर में सरकारी निकायों द्वारा आयोजित विभिन्न प्रतियोगी परीक्षाओं के परिणाम के बारे में सूचित रहें, चाहे आप किसी भी भर्ती परीक्षा, प्रवेश परीक्षा या किसी अन्य सरकारी परीक्षा के परिणाम का इंतजार कर रहे हों तो हम आपको सूचित रखने के लिए समय-समय पर परिणाम अपडेट करते हैं।</p>
-//             <h2>All Latest <span className="highlight">Examination Result</span></h2>
-//             <div className="jobs-list">
-//                 {jobs.length > 0 ? (
-//                     jobs.map((job) => (
-//                         <div
-//                             key={job.naukari_id}
-//                             className="job-title"
-//                             onClick={() => router.push(`/${job.seo_section}/${job.slug}`)}
-//                         >
-//                             {job.title}
-//                         </div>
-//                     ))
-//                 ) : (
-//                     <p className="no-jobs">No jobs available.</p>
-//                 )}
-//             </div>
+//       <div className="admin-card-container">
+//         <h1 className="heading">Result</h1>
+//         <p className="no-jobs">No results available.</p>
+//       </div>
+//     );
+//   }
 
-//             {/* Pagination Controls */}
-//             {totalPages > 1 && (
-//                 <div className="pagination">
-//                     <button onClick={handlePrev} disabled={page === 1}>
-//                         Prev
-//                     </button>
-//                     <span className="page-info">
-//                         Page {page} of {totalPages}
-//                     </span>
-//                     <button onClick={handleNext} disabled={page === totalPages}>
-//                         Next
-//                     </button>
-//                 </div>
-//             )}
+//   return (
+//     <div className="admin-card-container">
+//       <h1 className="heading">Result</h1>
+//       <p className='text'>
+//         Welcome to <strong>Sarkari Result.</strong> Stay informed about the
+//         Result of various competitive exams conducted by government bodies across India. 
+//         We update results regularly to keep you informed. <a href="#">Let’s update.</a>
+//       </p>
+//       <p className="text">
+//         <strong>Sarkari Result</strong> में आपका स्वागत है। भारत भर में सरकारी 
+//         निकायों द्वारा आयोजित विभिन्न प्रतियोगी परीक्षाओं के परिणाम के बारे में सूचित रहें। 
+//       </p>
+
+//       <h2>All Latest <span className="highlight">Examination Result</span></h2>
+
+//       <div className="jobs-list">
+//         {jobs.map((job) => (
+//           <Link
+//             key={job.naukari_id}
+//             href={`/${job.seo_section}/${job.slug}`}
+//             className="job-title"
+//           >
+//             {job.title}
+//           </Link>
+//         ))}
+//       </div>
+
+//       {/* Pagination */}
+//       {totalPages > 1 && (
+//         <div className="pagination">
+//           {page > 1 && (
+//             <Link href={`?page=${page - 1}`}>
+//               <button>Prev</button>
+//             </Link>
+//           )}
+//           <span className="page-info">Page {page} of {totalPages}</span>
+//           {page < totalPages && (
+//             <Link href={`?page=${page + 1}`}>
+//               <button>Next</button>
+//             </Link>
+//           )}
 //         </div>
-
-//     )
+//       )}
+//     </div>
+//   );
 // }
-
-// export default latestJobs;
 import { fetcher } from '@/src/components/fetcher';
 import './results.scss';
 import '../latest-jobs/ViewJobs.css';
@@ -96,17 +83,34 @@ import Link from 'next/link';
 
 const limit = 10;
 
+export const metadata = {
+  title: 'Sarkari Result 2025 | Latest Government Exam Results Today',
+  description:
+    'Check all latest Sarkari Results 2025 from UPSC, SSC, Railway, Police, Bank, and other government exams. Get official government result updates instantly.',
+  keywords:
+    'Sarkari Result, Sarkari Results 2025, Government Result, Latest Result, Exam Result, Sarkari Exam, Govt Job Results, SSC Result, UPSC Result, Bank Result, Railway Result',
+  openGraph: {
+    title: 'Sarkari Result 2025 | All Latest Government Exam Results',
+    description:
+      'Get all Sarkari Result 2025 updates for SSC, UPSC, Bank, Police, and other exams. Stay updated with real-time government result announcements.',
+    url: 'https://jobportalapp.agileappdemo.com/results',
+    type: 'website',
+  },
+  alternates: {
+    canonical: 'https://jobportalapp.agileappdemo.com/results',
+  },
+};
+
 export default async function LatestResults({ searchParams }) {
   const page = Number(searchParams?.page) || 1;
 
-  // ✅ Server-side API call
   let res = null;
   try {
     res = await fetcher(`/naukari?page=${page}&limit=${limit}&type=result`, {
-      cache: 'no-store', // ensures fresh data every request
+      next: { revalidate: 120 },
     });
   } catch (error) {
-    console.error("Error fetching results:", error);
+    console.error('Error fetching results:', error);
   }
 
   const jobs = res?.data || [];
@@ -114,56 +118,90 @@ export default async function LatestResults({ searchParams }) {
 
   if (!res || jobs.length === 0) {
     return (
-      <div className="admin-card-container">
-        <h1 className="heading">Result</h1>
-        <p className="no-jobs">No results available.</p>
-      </div>
+      <main className="admin-card-container">
+        <h1 className="heading">Sarkari Result 2025</h1>
+        <p className="no-jobs">No results declared yet. Please check back soon.</p>
+      </main>
     );
   }
 
   return (
-    <div className="admin-card-container">
-      <h1 className="heading">Result</h1>
-      <p className='text'>
-        Welcome to <strong>Sarkari Result.</strong> Stay informed about the
-        Result of various competitive exams conducted by government bodies across India. 
-        We update results regularly to keep you informed. <a href="#">Let’s update.</a>
-      </p>
-      <p className="text">
-        <strong>Sarkari Result</strong> में आपका स्वागत है। भारत भर में सरकारी 
-        निकायों द्वारा आयोजित विभिन्न प्रतियोगी परीक्षाओं के परिणाम के बारे में सूचित रहें। 
-      </p>
+    <main className="admin-card-container">
+      <h1 className="heading">Sarkari Result 2025 – Latest Government Exam Results</h1>
 
-      <h2>All Latest <span className="highlight">Examination Result</span></h2>
+      <section className="intro">
+        <p className="text">
+          Welcome to <strong>Sarkari Result</strong> – your one-stop destination for all
+          <strong> government exam results</strong> including UPSC, SSC, Bank, Railway,
+          Police, and State Government exams. Stay updated with official result
+          announcements, merit lists, and scorecards.
+        </p>
 
-      <div className="jobs-list">
-        {jobs.map((job) => (
-          <Link
+        <p className="text">
+          <strong>Sarkari Result</strong> में आपका स्वागत है। यहां आपको सभी सरकारी परीक्षाओं
+          जैसे <strong>UPSC, SSC, बैंक, रेलवे</strong> और अन्य की नवीनतम
+          <strong> रिजल्ट जानकारी</strong> प्राप्त होगी।
+        </p>
+      </section>
+
+      <h2>All Latest <span className="highlight">Examination Results 2025</span></h2>
+
+      <section className="jobs-list" itemScope itemType="https://schema.org/ItemList">
+        {jobs.map((job, index) => (
+          <article
             key={job.naukari_id}
-            href={`/${job.seo_section}/${job.slug}`}
-            className="job-title"
+            className="job-item"
+            itemProp="itemListElement"
+            itemScope
+            itemType="https://schema.org/ListItem"
           >
-            {job.title}
-          </Link>
+            <meta itemProp="position" content={String(index + 1)} />
+            <Link
+              href={`/${job.seo_section}/${job.slug}`}
+              itemProp="url"
+              className="job-title"
+            >
+              <span itemProp="name">{job.title}</span>
+            </Link>
+          </article>
         ))}
-      </div>
+      </section>
 
-      {/* Pagination */}
       {totalPages > 1 && (
-        <div className="pagination">
+        <nav className="pagination" aria-label="Pagination">
           {page > 1 && (
-            <Link href={`?page=${page - 1}`}>
-              <button>Prev</button>
+            <Link href={`?page=${page - 1}`} prefetch>
+              <button>Previous</button>
             </Link>
           )}
           <span className="page-info">Page {page} of {totalPages}</span>
           {page < totalPages && (
-            <Link href={`?page=${page + 1}`}>
+            <Link href={`?page=${page + 1}`} prefetch>
               <button>Next</button>
             </Link>
           )}
-        </div>
+        </nav>
       )}
-    </div>
+
+      {/* ✅ JSON-LD Structured Data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: "Sarkari Result 2025",
+            description:
+              "Get latest Sarkari Result 2025 updates from SSC, UPSC, Bank, Police, and other exams.",
+            itemListElement: jobs.map((job, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              name: job.title,
+              url: `https://jobportalapp.agileappdemo.com/${job.seo_section}/${job.slug}`,
+            })),
+          }),
+        }}
+      />
+    </main>
   );
 }
