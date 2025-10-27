@@ -50,25 +50,65 @@
     }
 }
 
-.main_heagin_wrapp{
+.main_heagin_wrapp {
     padding: 85px 0 45px;
-    h2{
+
+    h2 {
         font-size: 65px;
         font-weight: 800;
         line-height: 100%;
         text-align: center;
 
-        span{
+        span {
             color: $primary;
+        }
+    }
+
+
+    @media (max-width: 767px) {
+        padding: 60px 0 30px;
+
+        h2 {
+            font-size: 36px;
+            line-height: 110%;
         }
     }
 }
 
-.chipMainWrapp{
+
+.chipMainWrapp {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: 24px;
     padding: 0 0 80px;
+
+    .JobsChip_chipWrapp__17SPN p {
+        font-size: 18px;
+    }
+
+    // Responsive for screens below 767px
+    @media (max-width: 767px) {
+        gap: 16px; // reduce gap for smaller screens
+        padding: 0 0 40px;
+
+        .JobsChip_chipWrapp__17SPN p {
+            font-size: 12px; // smaller font for mobile
+        }
+    }
 }
+
+
+
+@media (max-width: 767px) {
+    .RecentJobCard_jobMainWrap__iQKQG {
+  padding: 0 0rem !important; 
+        background: #fff;
+        border-radius: 47px;
+        margin: 24px 0 54px;
+    }
+}
+
+
+
