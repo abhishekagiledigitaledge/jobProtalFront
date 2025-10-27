@@ -82,5 +82,16 @@
       }
     }
   }
-  // }
+  @media (max-width: 768px) {
+    .heading {
+    font-size: 28px;
+    font-weight: 700;
+    padding-left: 1rem;
+    position: relative;
+
+    &::after {
+     display: none;
+    }
+  }
+  }
 }
