@@ -135,7 +135,7 @@ export default async function Home() {
   const homeLinks = (await getHomeLinksData()) || jobChipList;
 
   const heading1 = homeData?.heading1 || "Welcome to No. 1";
-  const heading2 = homeData?.heading2 || "Education Portal Sarkari Result 2025";
+  const heading2 = homeData?.heading2 || " ";
 
   const seo_title =
     homeData?.seo_title ||
@@ -204,7 +204,7 @@ export default async function Home() {
         <div className="main_heagin_wrapp">
           <h2>
             <span>{heading1}</span> <br />
-            {heading2}
+            Education Portal  <span>Sarkari Result 2025</span>
           </h2>
         </div>
 
