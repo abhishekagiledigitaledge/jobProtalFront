@@ -1,59 +1,84 @@
 @use "@/styles/variables" as *;
 
-.footerWrap{
+.footerWrap {
     background: $primary;
-    
 
-    .footer_innner{
+    .footer_innner {
         padding: 74px 0;
 
-        .row_wrapp{
+        .row_wrapp {
             display: flex;
             flex-wrap: wrap;
             gap: 2rem;
-    
-            .first_item_wrapp{
+
+            .first_item_wrapp {
                 width: 80%;
                 columns: 160px 4;
             }
-    
-            ul{
-                li{
+
+            ul {
+                li {
                     color: $white;
                     font-size: 1rem;
                     font-weight: 700;
                     line-height: 37px;
                     transition: 0.5s;
 
-                    &:hover{
+                    &:hover {
                         color: $black;
                     }
-                    a{
+
+                    a {
                         padding: 8px 0;
                     }
                 }
             }
         }
     }
-    
-    .copy_wrapp{
+
+    .copy_wrapp {
         position: relative;
-       border-top: 1px solid #C91419;
-       padding: 40px 0;
+        border-top: 1px solid #C91419;
+        padding: 40px 0;
 
-       p{
-        position: absolute;
-        top: -33px;
-        left: 50%;
-        background: #ee2c3c;
-        transform: translateX(-50%);
-       border: 1px solid #C91419;
-        border-radius: 32.5px;
-        padding: 14px 24px;
-        line-height: 37px;
-        color: $white;
+        p {
+            position: absolute;
+            top: -33px;
+            left: 50%;
+            background: #ee2c3c;
+            transform: translateX(-50%);
+            border: 1px solid #C91419;
+            border-radius: 32.5px;
+            padding: 14px 24px;
+            line-height: 37px;
+            color: $white;
 
-       }
+        }
 
     }
 }
+
+@media (max-width: 767px) {
+  
+        .copy_wrapp {
+            position: relative;
+            border-top: 1px solid #C91419;
+            padding: 40px 0;
+
+            p {
+                position: absolute;
+                top: -33px;
+                left: 0;
+                background: #ee2c3c;
+                transform: 0;
+                border: 1px solid #C91419;
+                border-radius: 32.5px;
+                padding: 14px 24px;
+                line-height: 37px;
+                color: #fff;
+                width: 95%;
+                text-align: center;
+            
+            }
+        }
+    }
