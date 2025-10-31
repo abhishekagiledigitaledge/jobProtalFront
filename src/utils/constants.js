@@ -38,7 +38,7 @@ export const navList = [
   {
     id: 8,
     name: "Contact Us",
-    path: "#",
+    path: "/contact",
   },
 ];
 

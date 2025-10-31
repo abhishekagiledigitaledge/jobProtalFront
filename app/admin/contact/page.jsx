@@ -3,15 +3,11 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import "../dashboard/dashboard.css";
-import CreateJob from "@/src/components/Jobs/CreateJob";
-import PostLists from "@/src/components/Jobs/PostLists";
-import { fetcher } from "@/src/components/fetcher";
 import Link from "next/link";
+import ViewContacts from "@/src/components/Jobs/ViewContacts";
 
-export default function JobDashboard() {
+export default function AdminContactUs() {
     const [adminName, setAdminName] = useState("Admin");
-    const [isViewForm, setIsViewForm] = useState(false);
-    const [editData, setEditData] = useState(null);
     const router = useRouter();
 
     useEffect(() => {
@@ -38,23 +34,6 @@ export default function JobDashboard() {
         router.push("/admin/login");
     };
 
-    const handleCloseForm = () => {
-        setIsViewForm(false);
-        setEditData(null);
-    };
-
-    const handleOpenForm = () => {
-        setIsViewForm(true);
-    };
-
-    const handleEditData = async (rowData) => {
-        const data = await fetcher(`/naukari?naukari_id=${rowData?.naukari_id}`);
-        if (!data.success) throw new Error(data.message || "Failed to fetch posts");
-
-        setEditData(data?.data[0] || null);
-        setIsViewForm(true);
-    };
-
     return (
         <div className="dashboard-container">
             <header className="dashboard-header">
@@ -66,15 +45,7 @@ export default function JobDashboard() {
                 </div>
             </header>
 
-            {isViewForm ? (
-                <CreateJob editData={editData} handleCloseForm={handleCloseForm} />
-            ) : (
-                <PostLists
-                    editData={editData}
-                    handleOpenForm={handleOpenForm}
-                    handleEditData={handleEditData}
-                />
-            )}
+        <ViewContacts />
 
             <footer className="dashboard-footer">
                 © {new Date().getFullYear()} Government Job Portal | All Rights Reserved
