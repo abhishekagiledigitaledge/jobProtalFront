@@ -227,6 +227,7 @@
    📱 Responsive Tables
    ======================= */
 @media (max-width: 768px) {
+
   /* ✅ For all tables inside naukari-description */
   .naukari-description table {
     display: block;
@@ -277,6 +278,7 @@
 
   /* ✅ Optional stacking for very small screens */
   @media (max-width: 480px) {
+
     .useful-links-table,
     .useful-links-table tr,
     .useful-links-table td {
@@ -300,5 +302,83 @@
       display: inline-block;
       margin-bottom: 4px;
     }
+  }
+}
+
+/* ============================
+   📱 Extra Mobile Enhancements
+   ============================ */
+@media (max-width: 600px) {
+
+  /* ✅ Prevent horizontal scroll on entire page */
+  body,
+  .view-naukari-container {
+    overflow-x: hidden;
+  }
+
+  /* ✅ Ensure job description text & images fit screen */
+  .naukari-description {
+    overflow-x: auto;
+    word-break: break-word;
+  }
+
+  .naukari-description img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 8px auto;
+  }
+
+  .naukari-description h4,
+  .naukari-description h5 {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  /* ✅ Keep discover cards readable */
+  .discover-grid {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .discover-card {
+    flex: 1 1 100%;
+    padding: 10px;
+    font-size: 15px;
+  }
+
+  /* ✅ Prevent table overflow (horizontal scroll only) */
+  .naukari-description table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    border: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .naukari-description th,
+  .naukari-description td {
+    font-size: 14px;
+    padding: 8px 6px;
+    white-space: nowrap;
+  }
+
+  /* ✅ Smaller padding and cleaner look */
+  .useful-links-section,
+  .faq-section,
+  .discover-section {
+    padding: 12px;
+  }
+
+  .useful-links-header {
+    font-size: 18px;
+  }
+
+  .faq-item {
+    padding: 10px;
+  }
+
+  .faq-item h4 {
+    font-size: 15px;
   }
 }

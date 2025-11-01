@@ -1,11 +1,10 @@
 .jobMainWrap {
   display: flex;
-  gap: 20px; // space between cards
+  gap: 20px; 
   overflow-x: auto;
   padding: 10px 0;
   scroll-behavior: smooth;
 
-  /* hide scrollbar for Webkit browsers */
   &::-webkit-scrollbar {
     display: none;
   }

@@ -30,21 +30,21 @@ export default function AdminDashboard() {
     }
   }, [router]);
 
-    const fetchPosts = async () => {
-      try {
-        const data = await fetcher(`/home/text`);
-        if (!data.success) throw new Error(data.message || "Failed to fetch posts");
-  
-        setEditData(data.data[0] || {});
-      } catch (err) {
-        console.error(err);
-        setError(err.message || "Something went wrong while fetching posts.");
-      }
-    };
-  
-    useEffect(() => {
-      fetchPosts();
-    }, []);
+  const fetchPosts = async () => {
+    try {
+      const data = await fetcher(`/home/text`);
+      if (!data.success) throw new Error(data.message || "Failed to fetch posts");
+
+      setEditData(data.data[0] || {});
+    } catch (err) {
+      console.error(err);
+      setError(err.message || "Something went wrong while fetching posts.");
+    }
+  };
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
   const handleLogout = () => {
     Cookies.remove("job_portal");
@@ -83,10 +83,16 @@ export default function AdminDashboard() {
             </div>
           </Link>
           <Link href="/admin/government-jobs" className="no-underline">
-          <div className="stat-card red">
-            <h3>Government Jobs</h3>
-            {/* <p>23</p> */}
-          </div>
+            <div className="stat-card red">
+              <h3>Government Jobs</h3>
+              {/* <p>23</p> */}
+            </div>
+          </Link>
+          <Link href="/admin/contact" className="no-underline">
+            <div className="stat-card blue">
+              <h3>Contact Us</h3>
+              {/* <p>5</p> */}
+            </div>
           </Link>
         </section>
 
@@ -123,7 +129,7 @@ export default function AdminDashboard() {
             </tbody>
           </table>
         </section> */}
-        <UpdateHomeText editData={editData}  />
+        <UpdateHomeText editData={editData} />
       </main>
 
       <footer className="dashboard-footer">

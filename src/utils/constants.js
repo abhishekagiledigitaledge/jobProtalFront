@@ -33,12 +33,12 @@ export const navList = [
   {
     id: 7,
     name: "Search",
-    path: "#",
+    path: "/search",
   },
   {
     id: 8,
     name: "Contact Us",
-    path: "#",
+    path: "/contact",
   },
 ];
 
