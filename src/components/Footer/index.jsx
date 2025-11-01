@@ -33,7 +33,7 @@ const Footer = () => {
         </div>
       </div>
       <div className={style.copy_wrapp}>
-        <p>Copyright@2025 Sarkari result</p>
+        <p>Copyright@2025 All Govt Jobs</p>
       </div>
     </footer>
   );

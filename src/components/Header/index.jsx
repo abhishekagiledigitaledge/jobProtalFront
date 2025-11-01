@@ -12,7 +12,7 @@ export default function Header() {
     <div className={`${styles.header} container-fluid`}>
       <div className={`container ${styles.headerWrap}`}>
         <a href="/" className={styles.logo}>
-          Sarkari Result
+          Sarakri Govt Jobs
         </a>
 
         {/* ✅ Toggle Icon for Mobile */}

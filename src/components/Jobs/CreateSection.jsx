@@ -36,8 +36,8 @@ const CreateSection = ({ handleCloseForm, editData }) => {
           : "",
         seo_description: editData.seo_description || ""
       });
-      setPreview(`http://localhost:5500${editData.img_url}`);
-      // setPreview(`https://jobportalapp.agileappdemo.com/backend${editData.img_url}`);
+      // setPreview(`http://localhost:5500${editData.img_url}`);
+      setPreview(`https://jobportalapp.agileappdemo.com/backend${editData.img_url}`);
     }
   }, [editData]);
 
