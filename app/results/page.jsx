@@ -73,7 +73,6 @@ export default async function LatestResults({ searchParams }) {
   return (
     <main className="admin-card-container">
       <h1 className="heading">Sarkari Result 2025 – Latest Government Exam Results</h1>
-      <h2>s</h2>
 
       <section className="intro">
         <p className="text">
