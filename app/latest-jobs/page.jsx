@@ -21,7 +21,14 @@ export const metadata = {
   alternates: {
     canonical: "https://jobportalapp.agileappdemo.com/latest-jobs",
   },
+  // ✅ Added Robots tag for SEO
+  robots: {
+    index: true,
+    follow: true,
+    "max-image-preview": "large",
+  },
 };
+
 
 export default async function ViewJobs({ searchParams }) {
   const page = Number(searchParams?.page) || 1;

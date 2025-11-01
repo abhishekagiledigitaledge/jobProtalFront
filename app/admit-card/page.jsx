@@ -22,6 +22,18 @@ export const metadata = {
   alternates: {
     canonical: "https://jobportalapp.agileappdemo.com/admit-card",
   },
+  robots: {
+    index: true,
+    follow: true,
+    'max-image-preview': 'large',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Sarkari Result 2025 | Latest Government Exam Results',
+    description:
+      'Find all Sarkari Result 2025 updates for SSC, UPSC, Bank, Police, and other government exams. Stay informed with official results instantly.',
+    images: ['https://jobportalapp.agileappdemo.com/img/og-image.jpg'],
+  },
 };
 
 export default async function AdmitCards({ searchParams }) {

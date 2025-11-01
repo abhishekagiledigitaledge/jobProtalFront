@@ -15,6 +15,7 @@ const CreateJob = ({ handleCloseForm, editData }) => {
     title: "",
     isResult: false,
     isAdmitCard: false,
+    isNewPost: false,
     postDate: "",
     slug: "",
   });
@@ -57,6 +58,7 @@ const CreateJob = ({ handleCloseForm, editData }) => {
         title: editData.title || "",
         isResult: editData.isResult || false,
         isAdmitCard: editData.isAdmitCard || false,
+        isNewPost: editData.status === 2 || false,
         postDate: editData.postDate ? editData.postDate.split("T")[0] : "",
         slug: editData.slug || "",
       });
@@ -240,6 +242,10 @@ const CreateJob = ({ handleCloseForm, editData }) => {
             <label>
               <input type="checkbox" name="isAdmitCard" checked={formData.isAdmitCard} onChange={handleChange} />
               Is Admit Card Available
+            </label>
+            <label>
+              <input type="checkbox" name="isNewPost" checked={formData.isNewPost} onChange={handleChange} />
+              Is New Post
             </label>
           </div>
 

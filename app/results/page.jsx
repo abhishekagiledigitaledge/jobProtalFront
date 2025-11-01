@@ -16,12 +16,35 @@ export const metadata = {
     description:
       'Get all Sarkari Result 2025 updates for SSC, UPSC, Bank, Police, and other exams. Stay updated with real-time government result announcements.',
     url: 'https://jobportalapp.agileappdemo.com/results',
+    siteName: 'Sarkari Result 2025',
     type: 'website',
+    images: [
+      {
+        url: 'https://jobportalapp.agileappdemo.com/img/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Sarkari Result 2025 – Latest Government Exam Results',
+      },
+    ],
   },
   alternates: {
     canonical: 'https://jobportalapp.agileappdemo.com/results',
   },
+  // ✅ Robots tag for better SEO visibility and image previews
+  robots: {
+    index: true,
+    follow: true,
+    'max-image-preview': 'large',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Sarkari Result 2025 | Latest Government Exam Results',
+    description:
+      'Find all Sarkari Result 2025 updates for SSC, UPSC, Bank, Police, and other government exams. Stay informed with official results instantly.',
+    images: ['https://jobportalapp.agileappdemo.com/img/og-image.jpg'],
+  },
 };
+
 
 export default async function LatestResults({ searchParams }) {
   const page = Number(searchParams?.page) || 1;
@@ -50,6 +73,7 @@ export default async function LatestResults({ searchParams }) {
   return (
     <main className="admin-card-container">
       <h1 className="heading">Sarkari Result 2025 – Latest Government Exam Results</h1>
+      <h2>s</h2>
 
       <section className="intro">
         <p className="text">
