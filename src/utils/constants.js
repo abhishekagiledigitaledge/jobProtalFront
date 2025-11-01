@@ -33,7 +33,7 @@ export const navList = [
   {
     id: 7,
     name: "Search",
-    path: "#",
+    path: "/search",
   },
   {
     id: 8,
