@@ -4,7 +4,7 @@
 
 // export default async function SlugDynamicPage({ params }) {
 //   const { category, slug } = params;
-//   const baseUrl = "https://jobportalapp.agileappdemo.com";
+//   const baseUrl = "http://allgovjobs.com";
 
 //   // Fetch job details
 //   let job = null;
@@ -182,7 +182,7 @@ import "./SlugDynamicPage.css";
 
 export async function generateMetadata({ params }) {
   const { category, slug } = params;
-  const baseUrl = "https://jobportalapp.agileappdemo.com";
+  const baseUrl = "http://allgovjobs.com";
 
   try {
     const res = await fetcher(`/naukari?section=${category}&slug=${slug}`, {
@@ -252,7 +252,7 @@ export async function generateMetadata({ params }) {
 
 export default async function SlugDynamicPage({ params }) {
   const { category, slug } = params;
-  const baseUrl = "https://jobportalapp.agileappdemo.com";
+  const baseUrl = "http://allgovjobs.com";
 
   let job = null;
   try {

@@ -15,12 +15,12 @@ export const metadata = {
     title: 'Sarkari Result 2025 | All Latest Government Exam Results',
     description:
       'Get all Sarkari Result 2025 updates for SSC, UPSC, Bank, Police, and other exams. Stay updated with real-time government result announcements.',
-    url: 'https://jobportalapp.agileappdemo.com/results',
+    url: 'http://allgovjobs.com/results',
     siteName: 'Sarkari Result 2025',
     type: 'website',
     images: [
       {
-        url: 'https://jobportalapp.agileappdemo.com/img/og-image.jpg',
+        url: 'http://allgovjobs.com/img/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Sarkari Result 2025 – Latest Government Exam Results',
@@ -28,7 +28,7 @@ export const metadata = {
     ],
   },
   alternates: {
-    canonical: 'https://jobportalapp.agileappdemo.com/results',
+    canonical: 'http://allgovjobs.com/results',
   },
   // ✅ Robots tag for better SEO visibility and image previews
   robots: {
@@ -41,7 +41,7 @@ export const metadata = {
     title: 'Sarkari Result 2025 | Latest Government Exam Results',
     description:
       'Find all Sarkari Result 2025 updates for SSC, UPSC, Bank, Police, and other government exams. Stay informed with official results instantly.',
-    images: ['https://jobportalapp.agileappdemo.com/img/og-image.jpg'],
+    images: ['http://allgovjobs.com/img/og-image.jpg'],
   },
 };
 
@@ -142,7 +142,7 @@ export default async function LatestResults({ searchParams }) {
               "@type": "ListItem",
               position: index + 1,
               name: job.title,
-              url: `https://jobportalapp.agileappdemo.com/${job.seo_section}/${job.slug}`,
+              url: `http://allgovjobs.com/${job.seo_section}/${job.slug}`,
             })),
           }),
         }}

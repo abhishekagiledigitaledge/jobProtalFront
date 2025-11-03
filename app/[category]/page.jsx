@@ -29,7 +29,7 @@ export async function generateMetadata({ params }) {
       seoData?.seo_keywords ||
       `${category}, government jobs, sarkari result, sarkari naukri, admit card, result 2025`;
 
-    const pageUrl = `https://jobportalapp.agileappdemo.com/${category}`;
+    const pageUrl = `http://allgovjobs.com/${category}`;
 
     return {
       title: seo_title,
@@ -50,7 +50,7 @@ export async function generateMetadata({ params }) {
         siteName: "Sarkari Result 2025",
         images: [
           {
-            url: "https://jobportalapp.agileappdemo.com/img/og-image.jpg",
+            url: "http://allgovjobs.com/img/og-image.jpg",
             width: 1200,
             height: 630,
           },
@@ -61,7 +61,7 @@ export async function generateMetadata({ params }) {
         card: "summary_large_image",
         title: seo_title,
         description: seo_description,
-        images: ["https://jobportalapp.agileappdemo.com/img/og-image.jpg"],
+        images: ["http://allgovjobs.com/img/og-image.jpg"],
       },
     };
   } catch (error) {
@@ -116,13 +116,13 @@ export default async function CategoryDynamicPage({ params, searchParams }) {
           "@type": "ListItem",
           position: 1,
           name: "Home",
-          item: "https://jobportalapp.agileappdemo.com/",
+          item: "http://allgovjobs.com/",
         },
         {
           "@type": "ListItem",
           position: 2,
           name: category,
-          item: `https://jobportalapp.agileappdemo.com/${category}`,
+          item: `http://allgovjobs.com/${category}`,
         },
       ],
     },
@@ -151,7 +151,7 @@ export default async function CategoryDynamicPage({ params, searchParams }) {
         name: "Job Portal App",
         value: job.naukari_id,
       },
-      url: `https://jobportalapp.agileappdemo.com/${job.seo_section}/${job.slug}`,
+      url: `http://allgovjobs.com/${job.seo_section}/${job.slug}`,
     })),
   ];
 
