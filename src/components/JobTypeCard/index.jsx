@@ -5,7 +5,7 @@ import { fetcher } from "../fetcher";
 const JobTypeCard = async () => {
 
   // const NEXT_URL = 'http://localhost:5500';
-  const NEXT_URL = 'http://allgovjobs.com/backend';
+  const NEXT_URL = 'https://allgovjobs.com/backend';
 
   const data = await fetcher(`/section?page=1&limit=10`, {
     next: { revalidate: 120 },

@@ -28,7 +28,7 @@ export async function generateMetadata() {
       description: seo_description,
       keywords: seo_keywords,
       alternates: {
-        canonical: "http://allgovjobs.com/",
+        canonical: "https://allgovjobs.com/",
       },
       robots: {
         index: true,
@@ -38,11 +38,11 @@ export async function generateMetadata() {
       openGraph: {
         title: seo_title,
         description: seo_description,
-        url: "http://allgovjobs.com/",
+        url: "https://allgovjobs.com/",
         siteName: "Sarkari Result 2025",
         images: [
           {
-            url: "http://allgovjobs.com/img/og-image.jpg",
+            url: "https://allgovjobs.com/img/og-image.jpg",
             width: 1200,
             height: 630,
           },
@@ -53,7 +53,7 @@ export async function generateMetadata() {
         card: "summary_large_image",
         title: seo_title,
         description: seo_description,
-        images: ["http://allgovjobs.com/img/og-image.jpg"],
+        images: ["https://allgovjobs.com/img/og-image.jpg"],
       },
     };
   } catch (error) {

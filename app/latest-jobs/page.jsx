@@ -15,11 +15,11 @@ export const metadata = {
     title: "Sarkari Result 2025 - Latest Government Jobs & Sarkari Naukri Updates",
     description:
       "Get Sarkari Result 2025 latest government job updates — SSC, UPSC, Bank, Railway, and State Vacancies. Find Sarkari Naukri notifications updated daily.",
-    url: "http://allgovjobs.com/latest-jobs",
+    url: "https://allgovjobs.com/latest-jobs",
     type: "website",
   },
   alternates: {
-    canonical: "http://allgovjobs.com/latest-jobs",
+    canonical: "https://allgovjobs.com/latest-jobs",
   },
   // ✅ Added Robots tag for SEO
   robots: {
@@ -127,7 +127,7 @@ export default async function ViewJobs({ searchParams }) {
               "@type": "ListItem",
               position: index + 1,
               name: job.title,
-              url: `http://allgovjobs.com/${job.seo_section}/${job.slug}`,
+              url: `https://allgovjobs.com/${job.seo_section}/${job.slug}`,
             })),
           }),
         }}

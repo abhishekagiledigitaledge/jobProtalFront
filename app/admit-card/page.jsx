@@ -16,11 +16,11 @@ export const metadata = {
     title: "Sarkari Result 2025 - Latest Admit Cards & Hall Tickets",
     description:
       "Check and download all Sarkari Result Admit Cards 2025 for SSC, UPSC, Police, Bank, and Railway exams. Get your government exam hall tickets updated daily.",
-    url: "http://allgovjobs.com/admit-card",
+    url: "https://allgovjobs.com/admit-card",
     type: "website",
   },
   alternates: {
-    canonical: "http://allgovjobs.com/admit-card",
+    canonical: "https://allgovjobs.com/admit-card",
   },
   robots: {
     index: true,
@@ -32,7 +32,7 @@ export const metadata = {
     title: 'Sarkari Result 2025 | Latest Government Exam Results',
     description:
       'Find all Sarkari Result 2025 updates for SSC, UPSC, Bank, Police, and other government exams. Stay informed with official results instantly.',
-    images: ['http://allgovjobs.com/img/og-image.jpg'],
+    images: ['https://allgovjobs.com/img/og-image.jpg'],
   },
 };
 
@@ -137,7 +137,7 @@ export default async function AdmitCards({ searchParams }) {
               "@type": "ListItem",
               position: index + 1,
               name: job.title,
-              url: `http://allgovjobs.com/${job.seo_section}/${job.slug}`,
+              url: `https://allgovjobs.com/${job.seo_section}/${job.slug}`,
             })),
           }),
         }}

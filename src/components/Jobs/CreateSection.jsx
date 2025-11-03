@@ -37,7 +37,7 @@ const CreateSection = ({ handleCloseForm, editData }) => {
         seo_description: editData.seo_description || ""
       });
       // setPreview(`http://localhost:5500${editData.img_url}`);
-      setPreview(`http://allgovjobs.com/backend${editData.img_url}`);
+      setPreview(`https://allgovjobs.com/backend${editData.img_url}`);
     }
   }, [editData]);
 
