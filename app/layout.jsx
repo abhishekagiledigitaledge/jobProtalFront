@@ -6,9 +6,9 @@ import ConditionalLayout from "./ConditionalLayout";
 export const metadata = {
   title: "Job Portal",
   description: "Job Portal",
-  other: {
-    "google-site-verification": "X0u6l-Br75HnrXhf4UlKLYCKdH3vfqSHpRq-97GpbWE",
-  },
+  // other: {
+  //   "google-site-verification": "X0u6l-Br75HnrXhf4UlKLYCKdH3vfqSHpRq-97GpbWE",
+  // },
 };
 
 export default function RootLayout({ children }) {
