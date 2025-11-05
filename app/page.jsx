@@ -30,7 +30,7 @@ export async function generateMetadata() {
       alternates: {
         canonical: "https://allgovjobs.com/",
       },
-      robots: {
+      robots: { 
         index: true,
         follow: true,
         "max-image-preview": "large",

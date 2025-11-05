@@ -44,7 +44,7 @@ export default function ConditionalLayout({ children }) {
           height: "100vh",
         }}
       >
-        <Loader size={100} />
+        <Loader size={60} />
       </div>
     );
   }
