@@ -129,7 +129,7 @@ const HomeLinksLists = ({ handleOpenForm, handleEditData }) => {
                     message={`Are you sure you want to delete "${confirmDelete.display_name}" home sections?`}
                     onConfirm={async () => {
                         try {
-                            const result = await fetcher(`/home/links/${confirmDelete.section_id}`, {
+                            const result = await fetcher(`/home/links/${confirmDelete.home_links_id}`, {
                                 method: "DELETE",
                                 credentials: "include",
                             });

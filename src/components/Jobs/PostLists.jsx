@@ -266,7 +266,7 @@ const PostLists = ({ handleOpenForm, handleEditData, editData }) => {
                         className={`status-badge ${post.status === 1 ? "active" : "inactive"
                           }`}
                       >
-                        {post.status === 1 ? "Active" : "Inactive"}
+                        {post.status === 0 ? "Inactive" : "Active"}
                       </span>
                     </td>
                     <td>
