@@ -90,7 +90,6 @@ const UpdateHomeText = ({ editData }) => {
         }
 
         setErrors({});
-        setTimeout(() => handleCloseForm(), 800);
       } else {
         setMessage({
           type: "error",

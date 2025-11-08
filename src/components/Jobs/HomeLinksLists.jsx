@@ -137,7 +137,7 @@ const HomeLinksLists = ({ handleOpenForm, handleEditData }) => {
                             if (result.success) {
                                 // alert("Section deleted successfully!");
                                 setConfirmDelete(null);
-                                fetchPosts(); // reload list
+                                fetchPosts();
                             } else {
                                 alert(result.message || "Failed to delete section");
                             }
