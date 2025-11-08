@@ -59,14 +59,6 @@ const UpdateHomeText = ({ editData }) => {
     if (!validateForm()) return;
 
     try {
-      const data = new FormData();
-      data.append("heading1", formData.heading1);
-      data.append("seo_title", formData.seo_title);
-      data.append("seo_keywords", formData.seo_keywords);
-      data.append("seo_published_date", formData.seo_published_date);
-      data.append("seo_description", formData.seo_description);
-      data.append("heading2", formData.heading2);
-
       const method = isEditMode ? "PUT" : "POST";
       const endpoint = isEditMode
         ? `/home/text/${editData.home_text_id}`
@@ -74,7 +66,8 @@ const UpdateHomeText = ({ editData }) => {
 
       const result = await fetcher(endpoint, {
         method,
-        body: data,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
         credentials: "include",
       });
 
@@ -114,7 +107,7 @@ const UpdateHomeText = ({ editData }) => {
           <div className={`message ${message.type}`}>{message.text}</div>
         )}
 
-        <form onSubmit={handleSubmit} encType="multipart/form-data">
+        <form onSubmit={handleSubmit} >
           <div className="form-group">
             <label>Heading 1</label>
             <input
