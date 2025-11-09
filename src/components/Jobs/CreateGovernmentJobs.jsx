@@ -66,7 +66,7 @@ const CreateGovernmentJobs = ({ handleCloseForm, editData }) => {
 
       const method = isEditMode ? "PUT" : "POST";
       const endpoint = isEditMode
-        ? `/government/jobs/${editData.home_links_id}`
+        ? `/government/jobs/${editData.government_links_id}`
         : "/government/jobs";
 
       const result = await fetcher(endpoint, {

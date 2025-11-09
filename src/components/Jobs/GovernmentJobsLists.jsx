@@ -74,7 +74,7 @@ const GovernmentJobsLists = ({ handleOpenForm, handleEditData }) => {
                             </thead>
                             <tbody>
                                 {posts.map((post, index) => (
-                                    <tr key={post.section_id}>
+                                    <tr key={post.government_links_id}>
                                         <td>{(page - 1) * limit + index + 1}</td>
                                         <td className="truncate-title">{post.title}</td>
                                         <td>{post.department}</td>
@@ -137,7 +137,7 @@ const GovernmentJobsLists = ({ handleOpenForm, handleEditData }) => {
                     message={`Are you sure you want to delete "${confirmDelete.display_name}" home Government Jobs?`}
                     onConfirm={async () => {
                         try {
-                            const result = await fetcher(`/government/jobs/${confirmDelete.section_id}`, {
+                            const result = await fetcher(`/government/jobs/${confirmDelete.government_links_id}`, {
                                 method: "DELETE",
                                 credentials: "include",
                             });

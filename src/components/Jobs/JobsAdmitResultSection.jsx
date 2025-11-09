@@ -40,7 +40,7 @@ export default async function JobsAdmitResultSection() {
     );
   }
 
-  const Card = ({ title, data, color }) => (
+  const Card = ({ title, url, data, color }) => (
     <div className="card">
       <div className={`card-header ${color}`}>{title}</div>
 
@@ -63,7 +63,7 @@ export default async function JobsAdmitResultSection() {
       {data.length === 10 && (
         <div className="card-footer">
           <a
-            href={`/naukari/${title.toLowerCase().replace(" ", "-")}`}
+            href={`/${url}`}
             className={`view-btn ${color}`}
           >
             View All →
@@ -75,9 +75,9 @@ export default async function JobsAdmitResultSection() {
 
   return (
     <div className="section-container">
-      <Card title="Jobs" data={jobs} color="red" />
-      <Card title="Admit Card" data={admitCards} color="pink" />
-      <Card title="Results" data={results} color="red" />
+      <Card title="Jobs" url="latest-jobs" data={jobs} color="red" />
+      <Card title="Admit Card" url="admit-card" data={admitCards} color="pink" />
+      <Card title="Results" url="results" data={results} color="red" />
     </div>
   );
 }

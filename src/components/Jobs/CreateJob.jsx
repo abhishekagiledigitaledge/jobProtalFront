@@ -51,6 +51,15 @@ const CreateJob = ({ handleCloseForm, editData }) => {
     fetchSections();
   }, []);
 
+  useEffect(() => {
+    if (editData) {
+      setSeoData(prev => ({
+        ...prev,
+        seo_section: editData.seo_section || "",
+      }))
+    }
+  }, [sections]);
+
   // ✅ Pre-fill form if editData exists
   useEffect(() => {
     if (editData) {
