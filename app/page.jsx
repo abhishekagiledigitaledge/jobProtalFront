@@ -30,7 +30,7 @@ export async function generateMetadata() {
       alternates: {
         canonical: "https://allgovjobs.com/",
       },
-      robots: { 
+      robots: {
         index: true,
         follow: true,
         "max-image-preview": "large",
@@ -72,14 +72,15 @@ export default async function Home() {
   const homeLinks = (await fetcher("/home/links?page=1&limit=3"))?.data || jobChipList;
 
   const heading1 = data?.heading1 || "Welcome to No. 1";
-  const heading2 = data?.heading2 || " ";
+  const heading2 = data?.heading2 || "Education Portal Sarkari Result 2025";
 
   return (
     <div className="container">
       <div className="main_heagin_wrapp">
         <h2>
           <span>{heading1}</span> <br />
-          Education Portal <span>Sarkari Result 2025</span>
+          <h2>{heading2}</h2>
+          {/* Education Portal <span>Sarkari Result 2025</span> */}
         </h2>
       </div>
       <h1></h1>

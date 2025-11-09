@@ -35,7 +35,7 @@ export default async function ViewJobs({ searchParams }) {
 
   let res = null;
   try {
-    res = await fetcher(`/naukari?page=${page}&limit=${limit}&type=jobs`, {
+    res = await fetcher(`/naukari?page=${page}&limit=${limit}&type=latest-jobs`, {
       next: { revalidate: 120 },
     });
   } catch (error) {

@@ -3,6 +3,7 @@ import "../latest-jobs/latest-job.scss";
 import "../latest-jobs/ViewJobs.css";
 import Loader from "@/src/components/Loader/Loader";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 // ✅ Pagination limit
 const limit = 10;
@@ -89,6 +90,9 @@ export default async function CategoryDynamicPage({ params, searchParams }) {
   }
 
   const jobs = res?.data || [];
+  if (!jobs.length) {
+    redirect("/latest-jobs");
+  }
   const totalPages = res?.pagination?.totalPages || 1;
 
   if (!res) {
@@ -166,24 +170,24 @@ export default async function CategoryDynamicPage({ params, searchParams }) {
       />
 
       <h1 className="heading">
-        {category?.toUpperCase()} – Latest Government Jobs
+        {category?.replace("_", " ")?.toUpperCase()} – Latest Government Jobs
       </h1>
 
       <p className="text">
         Welcome to <strong>Sarkari Result</strong> – your trusted portal for all
-        updates related to {category} jobs, admit cards, and results. Check the
+        updates related to {category?.replace("_", " ")} jobs, admit cards, and results. Check the
         latest openings, download admit cards, and view results in one place.{" "}
         <a href="#">Stay Updated.</a>
       </p>
 
       <p className="text">
         <strong>Sarkari Result</strong> में आपका स्वागत है। यहां पर आप{" "}
-        <strong>{category}</strong> की नवीनतम सरकारी नौकरियों, प्रवेश पत्रों और
+        <strong>{category?.replace("_", " ")}</strong> की नवीनतम सरकारी नौकरियों, प्रवेश पत्रों और
         परिणामों की जानकारी प्राप्त कर सकते हैं।
       </p>
 
       <h2>
-        Latest <span className="highlight">{category}</span> Jobs
+        Latest <span className="highlight">{category?.replace("_", " ")}</span> Jobs
       </h2>
 
       <div className="jobs-list">

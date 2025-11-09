@@ -18,6 +18,7 @@ export default function ConditionalLayout({ children }) {
     "/admin/job",
     "/admin/home-links",
     "/admin/government-jobs",
+    "/admin/job-priority",
   ];
 
   const hideLayout = noLayoutRoutes.some((route) => pathname?.startsWith(route));

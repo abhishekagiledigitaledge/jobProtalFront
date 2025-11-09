@@ -6,7 +6,7 @@ import Loader from "../Loader/Loader";
 async function getNaukariData() {
   try {
     const [jobsRes, admitRes, resultRes] = await Promise.all([
-      fetcher(`/naukari?page=1&limit=10&type=jobs`, { next: { revalidate: 60 } }),
+      fetcher(`/naukari?page=1&limit=10&type=latest-jobs`, { next: { revalidate: 60 } }),
       fetcher(`/naukari?page=1&limit=10&type=admit_card`, { next: { revalidate: 60 } }),
       fetcher(`/naukari?page=1&limit=10&type=result`, { next: { revalidate: 60 } }),
     ]);

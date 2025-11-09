@@ -6,7 +6,7 @@ import Link from "next/link";
 
 async function getCardListsData() {
   try {
-    const json = await fetcher("/naukari?page=1&limit=5&type=jobs", {
+    const json = await fetcher("/naukari?page=1&limit=6&type=new", {
       next: { revalidate: 120 },
     });
     if (json?.success && json?.data?.length > 0) {

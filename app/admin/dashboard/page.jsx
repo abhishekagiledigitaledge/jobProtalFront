@@ -94,6 +94,12 @@ export default function AdminDashboard() {
               {/* <p>5</p> */}
             </div>
           </Link>
+          <Link href="/admin/job-priority" className="no-underline">
+            <div className="stat-card green">
+              <h3>Job Priority</h3>
+              {/* <p>5</p> */}
+            </div>
+          </Link>
         </section>
 
         {/* <section className="recent-activity">
