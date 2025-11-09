@@ -3,7 +3,7 @@ import './results.scss';
 import '../latest-jobs/ViewJobs.css';
 import Link from 'next/link';
 
-const limit = 10;
+const limit = 20;
 
 export const metadata = {
   title: 'Sarkari Result 2025 | Latest Government Exam Results Today',

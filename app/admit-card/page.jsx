@@ -3,7 +3,7 @@ import "./admit-cards.scss";
 import "../latest-jobs/ViewJobs.css";
 import Link from "next/link";
 
-const limit = 10;
+const limit = 20;
 
 // ✅ SEO Metadata
 export const metadata = {
