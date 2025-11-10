@@ -1,13 +1,13 @@
 import Cookies from "js-cookie";
 
-const API_BASE_URL = "https://allgovjobs.com/backend/api";
+// const API_BASE_URL = "https://allgovjobs.com/backend/api";
 // const API_BASE_URL = "http://localhost:5500/api";
 
 export const fetcher = async (endpoint, options = {}) => {
   try {
     const token = Cookies.get("job_portal");
 
-    const res = await fetch(API_BASE_URL + endpoint, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}` + endpoint, {
       ...options,
       headers: {
         // "Content-Type": "application/json",

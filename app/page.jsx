@@ -69,7 +69,7 @@ export async function generateMetadata() {
 export default async function Home() {
   const homeData = await fetcher("/home/text", { next: { revalidate: 120 } });
   const data = homeData?.success && homeData?.data?.length > 0 ? homeData.data[0] : null;
-  const homeLinks = (await fetcher("/home/links?page=1&limit=3"))?.data || jobChipList;
+  const homeLinks = (await fetcher("/home/links?page=1&limit=3&type=home", { next: { revalidate: 120 } }))?.data || [];
 
   const heading1 = data?.heading1 || "Welcome to No. 1";
   const heading2 = data?.heading2 || "Education Portal Sarkari Result 2025";

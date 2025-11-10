@@ -64,6 +64,7 @@ const HomeLinksLists = ({ handleOpenForm, handleEditData }) => {
                                     <th>#</th>
                                     <th>Display Name</th>
                                     <th>URL</th>
+                                    <th>Type</th>
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
@@ -74,6 +75,7 @@ const HomeLinksLists = ({ handleOpenForm, handleEditData }) => {
                                         <td>{(page - 1) * limit + index + 1}</td>
                                         <td className="truncate-title">{post.display_name}</td>
                                         <td>{post.url}</td>
+                                        <td>{post?.type?.toUpperCase()}</td>
                                         <td>
                                             <span
                                                 className={`status-badge ${post.status === 1 ? "active" : "inactive"}`}

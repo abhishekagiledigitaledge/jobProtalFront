@@ -35,15 +35,21 @@ const PostLists = ({ handleOpenForm, handleEditData, editData }) => {
     }
   };
 
-  useEffect(() => {
-    fetchPosts();
-  }, [page]);
+  // useEffect(() => {
+  //   fetchPosts();
+  // }, [page]);
+
+  // useEffect(() => {
+  //   if (!editData) {
+  //     fetchPosts();
+  //   }
+  // }, [editData]);
 
   useEffect(() => {
-    if (!editData) {
-      fetchPosts();
-    }
-  }, [editData]);
+    if (editData === undefined) return;
+
+    fetchPosts();
+  }, [page, editData]);
 
   // Handle deletion
   const handleDelete = async (postId) => {

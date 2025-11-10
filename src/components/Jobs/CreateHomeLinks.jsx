@@ -8,6 +8,7 @@ const CreateHomeLinks = ({ handleCloseForm, editData }) => {
   const [formData, setFormData] = useState({
     display_name: "",
     url: "",
+    type: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -20,6 +21,7 @@ const CreateHomeLinks = ({ handleCloseForm, editData }) => {
       setFormData({
         display_name: editData.display_name || "",
         url: editData.url || "",
+        type: editData.type || "",
       });
     }
   }, [editData]);
@@ -36,6 +38,7 @@ const CreateHomeLinks = ({ handleCloseForm, editData }) => {
     if (!formData.display_name.trim())
       newErrors.display_name = "Display Name is required";
     if (!formData.url.trim()) newErrors.url = "URL is required";
+    if (!formData.type.trim()) newErrors.type = "Type is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -123,6 +126,21 @@ const CreateHomeLinks = ({ handleCloseForm, editData }) => {
             />
             {errors.url && <span className="error">{errors.url}</span>}
           </div>
+
+          <div className="form-group">
+            <label>Type</label>
+            <select
+              name="type"
+              value={formData.type}
+              onChange={handleChange}
+            >
+              <option value="">Select Type</option>
+              <option value="home">Home</option>
+              <option value="footer">Footer</option>
+            </select>
+            {errors.type && <span className="error">{errors.type}</span>}
+          </div>
+
 
           <button type="submit" className="submit-btn">
             {isEditMode ? "Update Home Links" : "Create Home Links"}

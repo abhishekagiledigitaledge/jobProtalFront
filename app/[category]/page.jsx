@@ -82,7 +82,7 @@ export default async function CategoryDynamicPage({ params, searchParams }) {
   // Fetch category jobs
   let res = null;
   try {
-    res = await fetcher(`/naukari?page=${page}&limit=${limit}&section=${category}`, {
+    res = await fetcher(`/naukari?page=${page}&limit=${limit}&section=${category?.toLowerCase()}`, {
       next: { revalidate: 60 },
     });
   } catch (error) {
@@ -175,19 +175,19 @@ export default async function CategoryDynamicPage({ params, searchParams }) {
 
       <p className="text">
         Welcome to <strong>Sarkari Result</strong> – your trusted portal for all
-        updates related to {category?.replace("_", " ")} jobs, admit cards, and results. Check the
+        updates related to {category?.replace("_", " ")?.toUpperCase()} jobs, admit cards, and results. Check the
         latest openings, download admit cards, and view results in one place.{" "}
         <a href="#">Stay Updated.</a>
       </p>
 
       <p className="text">
         <strong>Sarkari Result</strong> में आपका स्वागत है। यहां पर आप{" "}
-        <strong>{category?.replace("_", " ")}</strong> की नवीनतम सरकारी नौकरियों, प्रवेश पत्रों और
+        <strong>{category?.replace("_", " ")?.toUpperCase()}</strong> की नवीनतम सरकारी नौकरियों, प्रवेश पत्रों और
         परिणामों की जानकारी प्राप्त कर सकते हैं।
       </p>
 
       <h2>
-        Latest <span className="highlight">{category?.replace("_", " ")}</span> Jobs
+        Latest <span className="highlight">{category?.replace("_", " ")?.toUpperCase()}</span> Jobs
       </h2>
 
       <div className="jobs-list">
