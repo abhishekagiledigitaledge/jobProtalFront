@@ -52,6 +52,10 @@
     }
   }
 
+  .faq-section {
+    padding: 0px !important;
+  }
+
   .useful-links-section,
   .faq-section,
   .discover-section {
@@ -190,9 +194,19 @@
     margin: 20px 10px;
   }
 
+  .table {
+    width: 100% !important;
+  }
+
   .naukari-header {
     .naukari-title {
       font-size: 1.3rem;
+    }
+  }
+
+  .naukari-description {
+    h2 {
+      margin-left: 0px !;
     }
   }
 
@@ -200,8 +214,13 @@
   .useful-links-table tr,
   .useful-links-table td {
     /* display: block; */
-    width: 100%;
+    width: 100% !important;
     text-align: left;
+
+  }
+
+  .useful-links-table .link-table {
+    display: flex;
   }
 
   .useful-links-table td {
@@ -209,9 +228,11 @@
     padding: 10px;
   }
 
+
   .link-label {
     font-size: 14px;
     margin-bottom: 6px;
+    white-space: initial !important;
   }
 
   .discover-grid {

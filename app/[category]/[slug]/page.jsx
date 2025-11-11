@@ -328,7 +328,7 @@ export default async function SlugDynamicPage({ params }) {
           <table className="useful-links-table">
             <tbody>
               {job.usefulLinks.map((group, i) => (
-                <tr key={i}>
+                <tr className="link-table" key={i}>
                   <td className="link-label">{group.text}</td>
                   <td className="link-url">
                     {group.links.map((link, j) => (
