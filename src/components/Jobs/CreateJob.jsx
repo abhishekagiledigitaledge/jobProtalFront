@@ -42,7 +42,7 @@ const CreateJob = ({ handleCloseForm, editData }) => {
   useEffect(() => {
     const fetchSections = async () => {
       try {
-        const res = await fetcher("/section");
+        const res = await fetcher("/section?page=1&limit=100");
         if (res && res.data) setSections(res.data);
       } catch (error) {
         console.error("Error fetching sections:", error);
