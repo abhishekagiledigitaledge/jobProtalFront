@@ -4,6 +4,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { navList } from "@/src/utils/constants";
 import NavLink from "./nav-links";
 import styles from "./header.module.scss";
+import Image from "next/image";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -12,7 +13,15 @@ export default function Header() {
     <div className={`${styles.header} container-fluid`}>
       <div className={`container ${styles.headerWrap}`}>
         <a href="/" className={styles.logo}>
-          Sarakri Govt Jobs
+          {/* Sarakri Govt Jobs */}
+          {/* <Image src="/" /> */}
+          <Image
+            src="/images/Allgovjobs_Logo.png"
+            alt="..."
+            width={300}
+            height={80}
+            // layout="responsive"
+          />
         </a>
 
         {/* ✅ Toggle Icon for Mobile */}

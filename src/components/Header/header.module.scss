@@ -19,12 +19,14 @@
     color: $white;
     font-weight: 700;
     text-decoration: none;
+    position: relative;
+    left: -45px;
 
-    img {
-      width: 155px;
-      height: auto;
-      object-fit: contain;
-    }
+    // img {
+    //   width: 155px;
+    //   height: auto;
+    //   object-fit: contain;
+    // }
   }
 
   .menuToggle {
@@ -77,6 +79,8 @@
 
     .logo {
       font-size: 20px;
+      position: relative;
+      left: -45px;
     }
 
     .menuToggle {

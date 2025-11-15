@@ -124,7 +124,7 @@ export default async function AdmitCards({ searchParams }) {
       )}
 
       {/* ✅ Structured Data (JSON-LD) */}
-      <script
+      {/* <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
@@ -141,7 +141,7 @@ export default async function AdmitCards({ searchParams }) {
             })),
           }),
         }}
-      />
+      /> */}
     </main>
   );
 }

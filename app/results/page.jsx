@@ -129,7 +129,7 @@ export default async function LatestResults({ searchParams }) {
       )}
 
       {/* ✅ JSON-LD Structured Data for SEO */}
-      <script
+      {/* <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
@@ -146,7 +146,7 @@ export default async function LatestResults({ searchParams }) {
             })),
           }),
         }}
-      />
+      /> */}
     </main>
   );
 }

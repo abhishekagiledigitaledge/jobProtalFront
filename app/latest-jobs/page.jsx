@@ -113,8 +113,7 @@ export default async function ViewJobs({ searchParams }) {
         </nav>
       )}
 
-      {/* ✅ JSON-LD Schema for SEO */}
-      <script
+      {/* <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
@@ -131,7 +130,8 @@ export default async function ViewJobs({ searchParams }) {
             })),
           }),
         }}
-      />
+      /> */}
+
     </main>
   );
 }

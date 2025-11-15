@@ -66,6 +66,7 @@ import React, { useEffect, useState } from "react";
 import style from "./footer.module.scss";
 import { footer_other_list } from "@/src/utils/constants";
 import { fetcher } from "../fetcher";
+import Image from "next/image";
 
 const Footer = () => {
   const [footerLinks, setFooterLinks] = useState([]);
@@ -89,6 +90,21 @@ const Footer = () => {
 
   return (
     <footer className={style.footerWrap}>
+
+      <div className={style.copy_wrapp}>
+        <p className={style.footer_logo}>
+          
+          <a href="/">
+            <Image
+              src="/images/allgovjobs_logo_white.png"
+              alt="..."
+              width={300}
+              height={80}
+            />
+          </a>
+        </p>
+      </div>
+
       <div className="container">
         <div className={style.footer_innner}>
           <div className={style.row_wrapp}>

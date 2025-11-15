@@ -55,6 +55,18 @@
 
         }
 
+        .footer_logo{
+            min-width: 300px;
+            border-radius: 100px;
+            background-color: black;
+            top: -55px;
+            height: 100px;
+        }
+
+        img{
+            position: relative;
+            // bottom: -5px;
+        }
     }
 }
 
