@@ -300,6 +300,8 @@ export default async function SlugDynamicPage({ params }) {
               "@type": "Place",
               address: {
                 "@type": "PostalAddress",
+                addressLocality: "India",
+                addressRegion: "India",
                 addressCountry: "IN",
               },
             },

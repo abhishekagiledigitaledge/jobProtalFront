@@ -147,6 +147,8 @@ export default async function CategoryDynamicPage({ params, searchParams }) {
         "@type": "Place",
         address: {
           "@type": "PostalAddress",
+          addressLocality: "India",
+          addressRegion: "India",
           addressCountry: "IN",
         },
       },
