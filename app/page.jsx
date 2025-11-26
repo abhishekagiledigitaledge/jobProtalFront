@@ -79,9 +79,8 @@ export default async function Home() {
       <div className="main_heagin_wrapp">
         <h2>
           <span>{heading1}</span> <br />
-          <h2>{heading2}</h2>
-          {/* Education Portal <span>Sarkari Result 2025</span> */}
         </h2>
+        <h2>{heading2}</h2>
       </div>
       <h1></h1>
 

@@ -13,14 +13,11 @@ export default function Header() {
     <div className={`${styles.header} container-fluid`}>
       <div className={`container ${styles.headerWrap}`}>
         <a href="/" className={styles.logo}>
-          {/* Sarakri Govt Jobs */}
-          {/* <Image src="/" /> */}
           <Image
             src="/images/Allgovjobs_Logo.png"
             alt="..."
             width={300}
             height={80}
-            // layout="responsive"
           />
         </a>
 
@@ -37,7 +34,7 @@ export default function Header() {
           <ul>
             {navList.map((item, index) => (
               <li key={index}>
-                <NavLink href={item.path}>{item.name}</NavLink>
+                <NavLink setMenuOpen={setMenuOpen} href={item.path}>{item.name}</NavLink>
               </li>
             ))}
           </ul>

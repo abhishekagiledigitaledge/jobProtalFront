@@ -35,20 +35,20 @@ export default function ConditionalLayout({ children }) {
     return () => clearTimeout(timeout);
   }, [pathname]);
 
-  if (loading) {
-    return (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "100vh",
-        }}
-      >
-        <Loader size={60} />
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div
+  //       style={{
+  //         display: "flex",
+  //         alignItems: "center",
+  //         justifyContent: "center",
+  //         height: "100vh",
+  //       }}
+  //     >
+  //       <Loader size={60} />
+  //     </div>
+  //   );
+  // }
 
   return (
     <>
