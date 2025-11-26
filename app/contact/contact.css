@@ -84,6 +84,10 @@
     font-size: 1.6rem;
   }
 
+  .contact-form {
+    padding-bottom: 40px;
+  }
+
   .submit-btn {
     font-size: 0.95rem;
   }
