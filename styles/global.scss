@@ -64,11 +64,27 @@
         }
     }
 
+    h1 {
+        font-size: 65px;
+        font-weight: 800;
+        line-height: 100%;
+        text-align: center;
+
+        span {
+            color: $primary;
+        }
+    }
+
 
     @media (max-width: 767px) {
         padding: 10px 0 10px;
 
         h2 {
+            font-size: 22px;
+            line-height: 110%;
+        }
+
+        h1 {
             font-size: 22px;
             line-height: 110%;
         }

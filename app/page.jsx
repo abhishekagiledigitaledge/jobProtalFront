@@ -80,7 +80,7 @@ export default async function Home() {
         <h2>
           <span>{heading1}</span> <br />
         </h2>
-        <h2>{heading2}</h2>
+        <h1>{heading2}</h1>
       </div>
       <h1></h1>
 
