@@ -5,7 +5,7 @@ const API_BASE_URL = "http://localhost:5500/api";
 
 export const fetcher = async (endpoint, options = {}) => {
   try {
-    const token = Cookies.get("job_portal");
+    const token = Cookies.get("job_portal_agent");
 
     const res = await fetch(API_BASE_URL + endpoint, {
       ...options,

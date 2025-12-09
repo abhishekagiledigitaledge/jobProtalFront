@@ -100,6 +100,18 @@ export default function AdminDashboard() {
               {/* <p>5</p> */}
             </div>
           </Link>
+          <Link href="/admin/questions" className="no-underline">
+            <div className="stat-card green">
+              <h3>Q & A for Student</h3>
+              {/* <p>for Student</p> */}
+            </div>
+          </Link>
+          <Link href="/admin/student" className="no-underline">
+            <div className="stat-card blue">
+              <h3>Students</h3>
+              {/* <p>for Student</p> */}
+            </div>
+          </Link>
         </section>
 
         {/* <section className="recent-activity">

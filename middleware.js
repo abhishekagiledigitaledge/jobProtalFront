@@ -3,36 +3,51 @@ import { NextRequest } from "next/server";
 
 export function middleware(req) {
   const token = req.cookies.get("job_portal")?.value;
+  const token_student = req.cookies.get("job_portal_agent")?.value;
 
-  // Define routes that require authentication
+
   const protectedRoutes = ["/admin/dashboard"];
 
   const currentPath = req.nextUrl.pathname;
 
-  // Check if current route is protected
   const isProtected = protectedRoutes.some((route) =>
     currentPath.startsWith(route)
   );
 
-  // If trying to access a protected route without token → redirect to login
+  if (currentPath.startsWith("/student/dashboard")) {
+    if (!token_student) {
+      return NextResponse.redirect(
+        new URL("/student/login", req.url)
+      );
+    }
+  }
+
+  if (
+    token_student &&
+    (currentPath.startsWith("/student/login") ||
+      currentPath.startsWith("/student/signup") || currentPath.startsWith("/student/verify-otp"))
+  ) {
+    return NextResponse.redirect(
+      new URL("/student/dashboard", req.url)
+    );
+  }
+
   if (isProtected && !token) {
     const loginUrl = new URL("/admin/login", req.url);
     return NextResponse.redirect(loginUrl);
   }
 
-  // If user has token and tries to visit login page → redirect to dashboard
   if (token && currentPath === "/admin/login") {
     const dashboardUrl = new URL("/admin/dashboard", req.url);
     return NextResponse.redirect(dashboardUrl);
   }
 
-  // Otherwise allow request
   return NextResponse.next();
 }
 
-// Define which routes should use the middleware
 export const config = {
   matcher: [
     "/admin/:path*",
+    "/student/:path"
   ],
 };

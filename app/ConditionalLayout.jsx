@@ -16,9 +16,16 @@ export default function ConditionalLayout({ children }) {
     "/admin/contact",
     "/admin/section",
     "/admin/job",
+    "/admin/questions",
+    "/admin/student",
     "/admin/home-links",
     "/admin/government-jobs",
     "/admin/job-priority",
+    "/student/login",
+    "/student/signup",
+    "/student/dashboard",
+    "/student/exam",
+    "/student/verify-otp"
   ];
 
   const hideLayout = noLayoutRoutes.some((route) => pathname?.startsWith(route));

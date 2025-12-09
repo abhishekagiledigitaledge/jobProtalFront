@@ -91,7 +91,7 @@ export default async function Home() {
       </div>
 
       <AdsCard />
-      <JobTypeCard />
+      <JobTypeCard /> 
       <JobsAdmitResultSection />
       <RecentJobCard />
       <NewJobCard />
