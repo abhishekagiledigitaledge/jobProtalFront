@@ -14,7 +14,7 @@ export default function Header() {
       <div className={`container ${styles.headerWrap}`}>
         <a href="/" className={styles.logo}>
           <Image
-            src="/images/Allgovjobs_Logo.png"
+            src="/images/Header_logo.png"
             alt="..."
             width={300}
             height={80}
