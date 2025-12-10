@@ -57,12 +57,15 @@
 //     );
 // }
 
-import React from 'react'
+import { Suspense } from "react";
+import VerifyOtpClient from "./VerifyOtpClient.jsx";
 
-const page = () => {
+export const dynamic = "force-dynamic";
+
+export default function Page() {
   return (
-    <div>page</div>
-  )
+    <Suspense fallback={<div>Loading...</div>}>
+      <VerifyOtpClient />
+    </Suspense>
+  );
 }
-
-export default page
