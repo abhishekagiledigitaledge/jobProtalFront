@@ -5,6 +5,7 @@ import { fetcher } from "@/src/components/agentFetcher";
 import { useRouter } from "next/navigation";
 import "./exam.css";
 import Loader from "@/src/components/Loader/Loader";
+import { useRef } from "react";
 
 export default function StudentExam() {
   const router = useRouter();
@@ -25,7 +26,12 @@ export default function StudentExam() {
   const [showResult, setShowResult] = useState(false);
   const [result, setResult] = useState({ score: 0, total: 0 });
 
+  const effectRun = useRef(false);
+
   useEffect(() => {
+    if (effectRun.current) return;
+    effectRun.current = true;
+
     startExam();
   }, []);
 
