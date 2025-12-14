@@ -272,9 +272,22 @@
 /* ===== RESULT STATS (ENHANCED) ===== */
 .result-stats.enhanced {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: 18px;
   margin-top: 18px;
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .result-stats.enhanced {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* for laptop screen */
+@media (min-width: 1024px) and (max-width: 1600px) {
+  .result-stats.enhanced {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
 }
 
 /* COMMON CARD */
